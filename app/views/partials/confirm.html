@@ -1,0 +1,28 @@
+
+<div class="container" >
+
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+    </ul>
+    <a href="/" class="navbar-brand"></a>
+  </div>
+
+  <div class="row" id="confirm" ng-show="show">
+    <div class="col-lg-5">&nbsp;</div>
+    <div class="col-lg-2">
+      <h1>Confirm Account</h1>
+
+      <p ng-show="msg" style="margin-top:40px;color:red">
+        {{ msg }}
+      </p>
+
+      <a ng-class="{action:true, slim:true, margin0:true}" href="#" ng-show="show_goaccount" ng-click="goaccount()">Your Account</a>
+      <a ng-class="{action:true, slim:true, margin0:true}" href="#" ng-show="show_gohome" ng-click="gohome()">Sign In</a>
+
+    </div>
+    <div class="col-lg-5">&nbsp;</div>
+  </div>
+
+
+
+</div> <!-- /container -->

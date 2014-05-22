@@ -1,0 +1,34 @@
+
+<div class="container" >
+
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+    </ul>
+    <a href="/" class="navbar-brand"></a>
+  </div>
+
+  <div class="row" id="reset" ng-show="show">
+    <div class="col-lg-5">&nbsp;</div>
+    <div class="col-lg-2">
+      <h1>Password Reset</h1>
+      <form role="form" ng-show="show_reset">
+        <div ng-class="{'form-group':true,'field':true,mvp_seek_input:seek_password}">
+          <label ng-show="input_password" class="show-hide">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" ng-model="input_password" tab-index="1" autocorrect="off">
+        </div>
+        <div ng-class="{'form-group':true,'field':true,mvp_seek_input:seek_repeat}">
+          <label ng-show="input_repeat" class="show-hide">Repeat Password</label>
+          <input type="password" class="form-control" id="repeat" placeholder="Repeat password" ng-model="input_repeat" tab-index="2" autocorrect="off">
+        </div>
+
+        <a ng-class="{action:true, slim:true, margin0:true, mvp_seek_input:seek_reset}" ng-show="show_resetpass" href="#" ng-click="reset()">Reset Password</a>
+        <a ng-class="{action:true, slim:true, margin0:true}" href="#" ng-show="show_gohome" ng-click="gohome()">Sign In</a>
+      </form>
+      <p ng-show="msg" style="margin-top:40px;color:red">
+        {{ msg }}
+      </p>
+    </div>
+    <div class="col-lg-5">&nbsp;</div>
+  </div>
+
+</div> <!-- /container -->

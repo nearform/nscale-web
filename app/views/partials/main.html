@@ -1,0 +1,64 @@
+
+<div class="container" >
+
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+    </ul>
+    <a href="/" class="navbar-brand"></a>
+  </div>
+
+  <div class="row" id="welcome" ng-show="show">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-4">
+      <h2>Welcome.</h2>
+      <h3></h3>
+    </div>
+
+    <div class="col-lg-4">
+      <div ng-show="!hasuser">
+        <a class="btn btn-block btn-social btn-lg btn-github" ng-click="github_login()">
+          <i class="fa fa-github"></i>
+          Sign in with Github
+        </a>
+        <div class="or">or</div>
+        <h2 class="center bottomborder">Sign up or sign in with email</h2>
+        <form role="form">
+          <div ng-class="{'form-group':true,'field':true, mvp_seek_input:seek_name,animated:true,fadeIn:fadein_name,fadeOut:fadeout_name}">
+            <label ng-show="input_name" class="show-hide">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="input_name" tab-index="1" autocorrect="off">
+          </div>
+          <div ng-class="{'form-group':true,'field':true,mvp_seek_input:seek_email}">
+            <label ng-show="input_email" class="show-hide">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" ng-model="input_email" tab-index="2" autocorrect="off">
+          </div>
+          <div ng-class="{'form-group':true,'field':true,mvp_seek_input:seek_password,animated:true,fadeIn:fadein_password,fadeOut:fadeout_password}">
+            <label ng-show="input_password" class="show-hide">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="input_password" tab-index="3" autocorrect="off">
+          </div>
+        </form>
+        <table id="loginbtns"><tr>
+           <td class="left"><a ng-class="{action:true, slim:true, mvp_seek_input:seek_signup, animated:true, fadeIn:fadein_signup, fadeOut:fadeout_signup}" href="#"  ng-click="signup()" tab-index="5">Sign Up</a></td>
+
+           <td class="center"><a ng-class="{action:true, slim:true, mvp_hide:hide_cancel, animated:true, fadeIn:fadein_cancel, fadeOut:fadeout_cancel, float:float_cancel}" href="#"  ng-click="cancel()">Cancel</a></td>
+
+           <td class="right"><a ng-class="{action:true, slim:true, margin0:true, mvp_seek_input:seek_signin, mvp_hide:hide_signin, animated:true, fadeIn:fadein_signin, fadeOut:fadeout_signin}" href="#"  ng-click="signin()" tab-index="4">Sign In</a></td>
+
+           <td ng-class="{right:true,hide:hide_send}"><a ng-class="{action:true, slim:true, margin0:true, mvp_seek_input:seek_send, animated:true, fadeIn:fadein_send, fadeOut:fadeout_send}" href="#"  ng-click="send()">Submit</a></td>
+        </tr></table>
+        <p>
+          <a ng-class="{mvp_hide:hide_forgot}" style="clear:both;float:right;margin-top:10px;" href="#" ng-click="forgot()">forgot password?</a>
+        </p>
+      </div>
+
+      <p style="margin-top:40px;color:red" ng-show="showmsg">{{ msg }}</p>
+    </div>
+
+    <div ng-show="hasuser">
+      <h2>Hi {{ user.name }}!</h2>
+      <a ng-class="{btn:true, 'btn-primary':true }" href="#" ng-click="goaccount()">Your Home</a>
+    </div>
+
+    <div class="col-lg-2"></div>
+  </div>
+
+</div> <!-- /container -->

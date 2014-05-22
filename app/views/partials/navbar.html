@@ -1,0 +1,22 @@
+<header>
+	<div class="container header">
+		<ul class="nav nav-pills pull-right">
+		  <li><a href="/home">Systems</a></li>
+		  <!-- <li><a href="/timeline">My Timeline</a></li> -->
+		  <li><a href="#">Docs</a></li>
+		  <li class="dropdown">
+		    <a class="dropdown-toggle ng-binding user-dropdown" data-toggle="dropdown">
+		    	<span ng-show="!user.avatar" class="glyphicon glyphicon-user"></span>
+		    	<div ng-show="user.avatar" class="userpic">
+              <img src="{{ user.avatar }}" class="img-circle small"/>
+          </div>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li><a href="/account"><span>Settings</span></a></li>
+		      <li><a ng-click="btn_signout()"><span>Sign Out</span></a></li>
+		    </ul>
+		  </li>
+		</ul>
+		<a href="/" class="navbar-brand"></a>
+	</div>
+</header>

@@ -1,0 +1,47 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title">Systems</h4>
+    </div>
+  </div>
+
+  <div class="row" id="main" ng-show="show">
+    <div class="col-lg-12">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <a class="action pull-right" href="/system/add"><span class="glyphicon glyphicon-plus"></span> Add a new system</a>
+        </div>
+      </div>
+
+      <hr class="slim">
+
+      <div class="row systems">
+        <div class="col-lg-12">
+          <ul>
+
+            <li ng-repeat="system in systems" class="system-row">
+              <div class="system-title">
+                <a href="/system/{{ system.id }}"><span>{{ system.name }}</span></a>
+                <span>{{ system.type }}</span>
+              </div>
+              <ul class="pull-right">
+                <li><a ng-click="delete(system.id)"><span class="glyphicon glyphicon-remove"></span></a></li>
+                <li><a href="/system/{{ system.id }}/edit"><span class="glyphicon glyphicon-pencil"></span></a></li>
+                <!-- <li><a><span class="glyphicon glyphicon-share"></span></a></li> -->
+              </ul>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->

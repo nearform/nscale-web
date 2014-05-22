@@ -1,0 +1,43 @@
+
+.select2-container {
+	width: 100%;
+	max-width: 400px;
+	border-radius: 0 !important;
+}
+
+
+
+.select2-search {
+	display: none;
+}
+
+.select2-container .select2-choice {
+	border: none;
+	border-bottom: 2px solid #d5d5d5;
+	background: none;
+	font-size: 24px;
+	font-weight: 300;
+	width: 100%;
+	max-width: 400px;
+	border-radius: 0;
+	line-height: 20px;
+}
+
+.select2-container .select2-choice .select2-arrow b {
+	background-position: 0 -2px;
+}
+
+.select2-container .select2-choice .select2-arrow {
+	border: none;
+	background: none;
+}
+
+.select2-container .select2-choice.select2-default > .select2-chosen {
+	color: #d5d5d5;
+}
+
+.select2-container-active .select2-choice, .select2-container-active .select2-choices {
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+	border-color: #66afe9;
+}

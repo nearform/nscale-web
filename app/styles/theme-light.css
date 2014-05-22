@@ -1,0 +1,330 @@
+
+html, body {
+  background-color: #FFFFFF;
+  color: #9c9999;
+}
+
+header {
+  background-color: #f6f6f6;
+}
+
+footer {
+	background-color: #ffffff;
+	border-top: 1px solid #eeeeee;
+}
+
+#wrap {
+	background-color: #FFFFFF;
+}
+
+a:hover {
+	color: #4183c4;
+}
+
+.searchbar {
+  background-color: transparent;
+  border-bottom: 1px solid #eeeeee;
+  color: #333333;
+  font-weight: normal;
+}
+
+.searchbar a {
+	font-weight: bold;
+	color: #4183c4;
+}
+
+.searchbar a:hover {
+	color: #4183c4;
+}
+
+.searchbar span.glyphicon {
+	color: #666666;
+}
+
+.btn-social {
+  color: #333333;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  -moz-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  -o-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  box-shadow: 0px 4px 0px 0px #d5d5d5;
+  border-color: #d5d5d5;
+  font-weight: normal;
+}
+
+.btn-social:hover {
+  background-color: #f6f6f6;
+  color: #4183c4;
+}
+
+a.action {
+  color: #333333;
+  background-color: #f6f6f6;
+  -webkit-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  -moz-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  -o-box-shadow: 0px 4px 0px 0px #d5d5d5;
+  box-shadow: 0px 4px 0px 0px #d5d5d5;
+  border-color: #d5d5d5;
+  font-weight: normal;
+}
+
+a.action:hover {
+	color: #4183c4;
+}
+
+a.action span.glyphicon {
+  border-color: #333333;
+}
+a.action:hover span.glyphicon {
+	border-color: #4183c4;
+}
+
+a.action span.fa {
+  border-color: #333333;
+}
+a.action:hover span.fa {
+	border-color: #4183c4;
+}
+
+.list ul li {
+	border-left: 2px solid transparent;
+	background-color: #f8f8f8 !important;
+  border-bottom: 1px solid #eeeeee;
+}
+.list ul li:first-child {
+	border-top: 1px solid #eeeeee;
+}
+.list ul li ul li {
+	border: none;
+}
+.list ul li ul li:first-child {
+	border: none;
+}
+.list ul li:hover {
+	background-color: transparent;
+	border-left-color: #cccccc;
+}
+.list ul li .title {
+	color: #333333;
+}
+.list ul li .title a {
+	color: #333333;
+}
+.list ul li span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.list ul li:hover .title a {
+	color: #4183c4;
+}
+.list ul li.list-row:hover span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.list ul li.list-row:hover ul li span.glyphicon {
+	color: #4183c4;
+	border-color: #4183c4;
+}
+
+.systems ul li {
+	border-left: 2px solid transparent;
+	background-color: #f8f8f8 !important;
+  border-bottom: 1px solid #eeeeee;
+}
+.systems ul li:first-child {
+	border-top: 1px solid #eeeeee;
+}
+.systems ul li ul li {
+	border: none;
+}
+.systems ul li ul li:first-child {
+	border: none;
+}
+.systems ul li:hover {
+	background-color: transparent;
+	border-left-color: #cccccc;
+}
+.systems ul li .system-title {
+	color: #333333;
+}
+.systems ul li .system-title a {
+	color: #333333;
+}
+.systems ul li span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.systems ul li:hover .system-title a {
+	color: #4183c4;
+}
+.systems ul li.system-row:hover span.glyphicon {
+	color: #4183c4;
+	border-color: #4183c4;
+}
+
+.revisions ul li {
+	border-left: 2px solid transparent;
+	background-color: #f8f8f8 !important;
+  border-bottom: 1px solid #eeeeee;
+}
+.revisions ul li:first-child {
+	border-top: 1px solid #eeeeee;
+}
+
+.revisions ul li:hover {
+	background-color: transparent;
+	border-left-color: #cccccc;
+}
+.revisions ul li .revision-title {
+	color: #333333;
+}
+.revisions ul li .revision-title a {
+	color: #333333;
+}
+.revisions ul li span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.revisions ul li.revision-row:hover .revision-title {
+	color: #333333;
+}
+.revisions ul li.revision-row:hover .revision-title a {
+	color: #4183c4;
+}
+.revisions ul li.revision-row:hover span.glyphicon {
+	color: #4183c4;
+	border-color: #4183c4;
+}
+.revisions ul li.selected {
+	background-color: #EEEEEE !important;
+	border-left-color: #cccccc;
+}
+.revisions ul li.deployed {
+	background-color: #CCEECC !important;
+}
+
+.containers ul li {
+	border-left: 2px solid transparent;
+	background-color: #f8f8f8 !important;
+  border-bottom: 1px solid #eeeeee;
+}
+.containers ul li:first-child {
+	border-top: 1px solid #eeeeee;
+}
+.containers ul li ul li {
+	border: none;
+}
+.containers ul li ul li:first-child {
+	border: none;
+}
+.containers ul li:hover {
+	background-color: transparent;
+	border-left-color: #cccccc;
+}
+.containers ul li .container-title {
+	color: #333333;
+}
+.containers ul li .container-title a {
+	color: #333333;
+}
+.containers ul li span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.containers ul li.container-row:hover .container-title {
+	color: #333333;
+}
+.containers ul li.container-row:hover .container-title a {
+	color: #4183c4;
+}
+.containers ul li.container-row:hover span.glyphicon {
+	color: #4183c4;
+	border-color: #4183c4;
+}
+
+.container-details ul li {
+	border-left: 2px solid transparent;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eeeeee;
+}
+.container-details ul li:first-child {
+	border-top: 1px solid #eeeeee;
+}
+.container-details ul li:hover {
+	border-left-color: #cccccc;
+}
+.container-details ul li a {
+  color: #333333;
+}
+.container-details ul li:nth-child(odd) {
+  background: #f8f8f8;
+}
+.container-details ul li:nth-child(odd) a {
+  color: #4183c4;
+}
+.container-details ul li .title {
+  color: #333333;
+}
+.container-details ul li .title a {
+  color: #4183c4;
+}
+.container-details ul li:hover .title {
+  color: #333333;
+}
+
+/*.container-details ul li:hover {
+	background-color: transparent;
+	border-color: #cccccc;
+}
+.container-details ul li .title {
+	color: #333333;
+}
+.container-details ul li .title a {
+	color: #333333;
+}
+.container-details ul li span.glyphicon {
+	color: #333333;
+	border-color: #333333;
+}
+.container-details ul li:hover .title a {
+	color: #4183c4;
+}
+.container-details ul li:hover span.glyphicon {
+	color: #4183c4;
+	border-color: #4183c4;
+}*/
+
+
+.select-filter.select2-container .select2-choice {
+  font-size: 18px;
+}
+
+.angular-ui-tree {
+  margin-bottom: 5px;
+}
+
+.angular-ui-tree-handle {
+  background: #f8faff;
+  border: 1px solid #dae2ea;
+  color: #7c9eb2;
+  padding: 10px 10px;
+  margin-bottom: 5px;
+}
+
+.angular-ui-tree-handle a {
+  text-decoration: underline;
+}
+
+.angular-ui-tree-handle:hover {
+  color: #438eb9;
+  background: #f4f6f7;
+  border-color: #dce2e8;
+}
+
+.angular-ui-tree-placeholder {
+  background: #f0f9ff;
+  border: 2px dashed #bed2db;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
