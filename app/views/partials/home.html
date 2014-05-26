@@ -27,7 +27,7 @@
             <li ng-repeat="system in systems" class="system-row">
               <div class="system-title">
                 <a href="/system/{{ system.id }}"><span>{{ system.name }}</span></a>
-                <span>{{ system.type }}</span>
+                <span>{{ system.type }}&nbsp;</span>
               </div>
               <ul class="pull-right">
                 <li><a ng-click="delete(system.id)"><span class="glyphicon glyphicon-remove"></span></a></li>
