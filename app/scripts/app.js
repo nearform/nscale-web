@@ -30,6 +30,10 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/home',
         controller: 'HomeCtrl'
       })
+      .when('/system/add', {
+        templateUrl: 'partials/system/add',
+        controller: 'HomeCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
