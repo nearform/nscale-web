@@ -64,6 +64,10 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/container/edit',
         controller: 'ContainerCtrl'
       })
+      .when('/system/:systemId/container/:containerId', {
+        templateUrl: 'partials/container/container',
+        controller: 'ContainerCtrl'
+      })
       .when('/system/:systemId', {
         templateUrl: 'partials/system/containers',
         controller: 'ContainersCtrl'

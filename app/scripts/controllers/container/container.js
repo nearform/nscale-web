@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api) {
+angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, containerTypes, socket) {
 
   // Init
   ctrlutil.init($scope, function(user) {
@@ -11,24 +11,49 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
       $scope.container = {};
       if ($routeParams.containerId) {
         $scope.containerId = $routeParams.containerId;
-        api.get('/system/' + $scope.systemId + '/containers', user, function(result){
-            $scope.containers = result;
 
-            for (var i = 0; i < result.length; i++) {
-                var container = result[i];
-                if (container.id === $scope.containerId) {
-                    $scope.container = container;
-                    break;
-                }
-            }
-            $scope.show = true;
-        });
-      } else {
-        $scope.show = true;
+        var containers = system.containerDefinitions;
+        for (var i = 0; i < containers.length; i++) {
+          var container = containers[i];
+          if (container.id === $scope.containerId) {
+              $scope.container = container;
+              break;
+          }
+        }
       }
+
+      $scope.show = true;
 
     });
   });
+
+  // scope build variables
+  $scope.show_build = false;
+  $scope.buildOutput = [];
+
+  var initSocketDone = false;
+  var initSocket = function() {
+    if (initSocketDone) {return;}
+    initSocketDone = true;
+
+    // Handle build output
+    socket.on('stdout', function (out) {
+        var outJson = JSON.parse(out);
+        console.log(outJson);
+        if (outJson.level !== 'debug') {
+            $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+        }
+    });
+    socket.on('stderr', function (out) {
+        var outJson = JSON.parse(out);
+        console.log(outJson);
+        $scope.buildOutput.push({text:outJson.stderr, type:'error'});
+    });
+    socket.on('result', function (out) {
+        console.log(out);
+        $scope.buildOutput.push({text:out, type:'result'});
+    });
+  }
 
   var setRepositoryToken = function() {
     // TODO Get repository token if user does not have the credentials
@@ -41,6 +66,38 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
     }
   };
 
+  // Build trigger
+  $scope.build = function(){
+      console.log('Building container');
+
+      initSocket();
+      $scope.show_build = true;
+
+      $scope.buildOutput.splice(0,$scope.buildOutput.length);
+
+      socket.emit('build', {user: $scope.user.id, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
+          console.dir('build emitted');
+          console.dir(data);
+      });
+  }
+
+  // Deploy trigger
+  $scope.deploy = function(){
+      console.log('Deploying container');
+
+      $scope.show_build = true;
+
+      $scope.buildOutput.splice(0,$scope.buildOutput.length);
+
+      socket.emit('deploy', {user: $scope.user.id, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
+          console.dir('deploy emitted');
+          console.dir(data);
+      });
+  }
+
+  $scope.resolveType = function(type){return containerTypes[type];}
+
+  // Save container
   $scope.save = function() {
 
     // TODO Only save specific properties that are associated with container type
@@ -53,6 +110,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
     });
   }
 
+  // Update container
   $scope.update = function() {
 
     // TODO Only save specific properties that are associated with container type

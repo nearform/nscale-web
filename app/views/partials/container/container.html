@@ -1,0 +1,95 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title"><a href="/home">Systems</a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="/system/{{ systemId }}">{{ systemName }}</a> <span class="glyphicon glyphicon-chevron-right"></span> {{ container.name }}</h4>
+    </div>
+  </div>
+
+  <div class="row" id="container" ng-show="show">
+    <div class="col-lg-12">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- <a class="action"><span class="glyphicon glyphicon-ok"></span> {{ container.name }}</a> -->
+          <a class="action pull-right" ng-click="build()"><span class="glyphicon glyphicon-flash"></span> Build container</a>
+          <!-- <a class="action" ng-click="deploy()">Deploy</a> -->
+        </div>
+      </div>
+
+      <hr class="slim">
+
+      <div class="row container-build" ng-show="show_build" scroll-glue>
+        <div class="col-lg-12">
+          <h4 class="title">Output:</h4>
+          <ul>
+            <li ng-repeat="output in buildOutput">
+              <span class="{{ output.type }}">{{ output.text }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row container-details">
+        <div class="col-lg-12">
+
+          <table class="table">
+
+            <tr>
+              <td>Name</td>
+              <td>{{ container.name }}</td>
+            </tr>
+
+            <tr>
+              <td>Type</td>
+              <td>{{ resolveType(container.type) }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Repository URL</td>
+              <td>{{ container.specific.repositoryUrl }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Target name</td>
+              <td>{{ container.specific.targetName }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Path</td>
+              <td>{{ container.specific.path }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Build script</td>
+              <td>{{ container.specific.buildScript }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Output directory</td>
+              <td>{{ container.specific.outputDir }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Deploy script</td>
+              <td>{{ container.specific.deployScript }}</td>
+            </tr>
+
+            <tr ng-show="container.type == 'docker'">
+              <td>Arguments</td>
+              <td>{{ container.specific.arguments }}</td>
+            </tr>
+
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->
