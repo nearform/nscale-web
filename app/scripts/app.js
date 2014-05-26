@@ -8,6 +8,7 @@ angular.module('nfdWebApp', [
   'constants',
   'apiService',
   'authService',
+  'ctrlUtilService',
   'socketService',
   'pubsubService',
   'validatorService'
@@ -33,6 +34,10 @@ angular.module('nfdWebApp', [
       .when('/system/add', {
         templateUrl: 'partials/system/add',
         controller: 'HomeCtrl'
+      })
+      .when('/system/:systemId/edit', {
+        templateUrl: 'partials/system/edit',
+        controller: 'SystemCtrl'
       })
       .otherwise({
         redirectTo: '/'

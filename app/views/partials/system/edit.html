@@ -1,0 +1,48 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title"><a href="/home">Systems</a> <span class="glyphicon glyphicon-chevron-right"></span> Edit {{ system.name }}</h4>
+    </div>
+  </div>
+
+  <div class="row" id="main" ng-show="show">
+
+    <div class="col-lg-12">
+
+      <div class="row systems">
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+
+          <form role="form">
+            <div class="field">
+                <label ng-show="system.name" class="show-hide">System Name</label>
+                <input  type="text" class="form-control" ng-model="system.name" placeholder="System Name" autocorrect="off"/>
+            </div>
+          </form>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <a class="action pull-right" ng-click="update()">Update</a>
+              <a class="action pull-right" href="/home">Cancel</a>
+            </div>
+          </div>
+
+          <hr>
+
+          <p ng-show="msg">{{ msg }}</p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->
