@@ -1,0 +1,97 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title"><a href="/home">Systems</a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="/system/{{ systemId }}">{{ systemName }}</a> <span class="glyphicon glyphicon-chevron-right"></span> Add a new container</h4>
+    </div>
+  </div>
+
+  <div class="row" id="main" ng-show="show">
+
+    <div class="col-lg-12">
+
+      <div class="row systems">
+        <div class="col-lg-3"></div>
+
+        <div class="col-lg-6">
+
+          <form role="form">
+            <div class="field">
+                <label ng-show="container.name" class="show-hide">Container Name</label>
+                <input  type="text" class="form-control" ng-model="container.name" placeholder="Container Name" autofocus autocorrect="off" tabindex="1" autofocus/>
+            </div>
+
+            <div class="field">
+              <label ng-show="container.type">Container Type</label>
+              <select ui-select2 ng-model="container.type" data-placeholder="Container Type" ng-required="true" tabindex="2">
+                  <option value=""></option>
+                  <option value="aws-ami">AMI</option>
+                  <option value="aws-sg">Security Group</option>
+                  <option value="aws-elb">Load balancer</option>
+                  <option value="docker">Docker container</option>
+              </select>
+            </div>
+
+            <div ng-show="container.type == 'docker'">
+              <div class="field">
+                  <label ng-show="container.specific.repositoryUrl" class="show-hide">Repository URL</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.repositoryUrl" placeholder="Repository URL" autocorrect="off" tabindex="3"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.targetName" class="show-hide">Target Name</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.targetName" placeholder="Target Name" autocorrect="off" tabindex="3"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.path" class="show-hide">Path</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.path" placeholder="Path" autocorrect="off" tabindex="4"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.buildScript" class="show-hide">Build script</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.buildScript" placeholder="Build script" autocorrect="off" tabindex="5"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.outputDir" class="show-hide">Output directory</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.outputDir" placeholder="Output directory" autocorrect="off" tabindex="5"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.deployScript" class="show-hide">Deploy script</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.deployScript" placeholder="Deploy script" autocorrect="off" tabindex="5"/>
+              </div>
+
+              <div class="field">
+                  <label ng-show="container.specific.arguments" class="show-hide">Arguments</label>
+                  <input  type="text" class="form-control" ng-model="container.specific.arguments" placeholder="Arguments" autocorrect="off" tabindex="5"/>
+              </div>
+            </div>
+
+          </form>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-lg-12">
+              <a class="action pull-right" ng-click="save()">Save</a>
+              <a class="action pull-right" href="/system/{{ systemId }}">Cancel</a>
+            </div>
+          </div>
+
+          <hr>
+
+          <p ng-show="msg">{{ msg }}</p>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->

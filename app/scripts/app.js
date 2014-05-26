@@ -56,6 +56,10 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/system/timeline',
         controller: 'TimelineCtrl'
       })
+      .when('/system/:systemId/container/add', {
+        templateUrl: 'partials/container/add',
+        controller: 'ContainerCtrl'
+      })
       .when('/system/:systemId', {
         templateUrl: 'partials/system/containers',
         controller: 'ContainersCtrl'

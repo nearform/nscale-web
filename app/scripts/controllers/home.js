@@ -26,6 +26,8 @@ angular.module('nfdWebApp').controller('HomeCtrl', function ($scope, $http, $loc
 
 	// System delete
   $scope.delete = function(system){
+    var r = confirm("Are you sure?");
+    if (!r) {return;}
   	api.del('/system/' + system.id, $scope.user, function(result){
       console.log('System deleted');
       var index = $scope.systems.indexOf(system);

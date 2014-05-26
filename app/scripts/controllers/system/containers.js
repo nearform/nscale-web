@@ -33,6 +33,8 @@ angular.module('nfdWebApp').controller('ContainersCtrl', function ($scope, $http
   $scope.resolveType = function(type){return containerTypes[type];}
 
   $scope.delete = function(systemId, container) {
+    var r = confirm("Are you sure?");
+    if (!r) {return;}
     api.del('/system/' + systemId + '/container/' + container.id, $scope.user, function(result){
       console.log('Container deleted');
       var index = $scope.containers.indexOf(container);
