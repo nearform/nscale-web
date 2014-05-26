@@ -1,0 +1,8 @@
+<div ui-tree-handle>
+  <!-- [{{container.id}}] -->
+  <a href="/system/{{systemId}}/container/{{container.containerDefinitionId}}">{{containerDefinitions[container.containerDefinitionId].name}}</a> <span class="pull-right"><small>{{containerDefinitions[container.containerDefinitionId].type}}</small></span>
+  <span><small>[{{containerDefinitions[container.containerDefinitionId].id}}]</small></span>
+</div>
+<ul ui-tree-nodes="" ng-model="container.contains">
+  <li ng-repeat="container in container.contains" ui-tree-node ng-include="'views/partials/system/nodes_renderer.html'"></li>
+</ul>

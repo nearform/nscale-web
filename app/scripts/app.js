@@ -11,7 +11,11 @@ angular.module('nfdWebApp', [
   'ctrlUtilService',
   'socketService',
   'pubsubService',
-  'validatorService'
+  'validatorService',
+  'ui.select2',
+  'socketService',
+  'ui.tree',
+  'topologyDirectives'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -38,6 +42,18 @@ angular.module('nfdWebApp', [
       .when('/system/:systemId/edit', {
         templateUrl: 'partials/system/edit',
         controller: 'SystemCtrl'
+      })
+      .when('/system/:systemId/currentstate', {
+        templateUrl: 'partials/system/currentstate',
+        controller: 'CurrentStateCtrl'
+      })
+      .when('/system/:systemId/targetstate', {
+        templateUrl: 'partials/system/targetstate',
+        controller: 'TargetStateCtrl'
+      })
+      .when('/system/:systemId', {
+        templateUrl: 'partials/system/containers',
+        controller: 'ContainersCtrl'
       })
       .otherwise({
         redirectTo: '/'
