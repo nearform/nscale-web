@@ -12,10 +12,11 @@ angular.module('nfdWebApp', [
   'socketService',
   'pubsubService',
   'validatorService',
-  'ui.select2',
   'socketService',
+  'ui.select2',
   'ui.tree',
-  'topologyDirectives'
+  'topologyDirectives',
+  'angular-momentjs'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -50,6 +51,10 @@ angular.module('nfdWebApp', [
       .when('/system/:systemId/targetstate', {
         templateUrl: 'partials/system/targetstate',
         controller: 'TargetStateCtrl'
+      })
+      .when('/system/:systemId/timeline', {
+        templateUrl: 'partials/system/timeline',
+        controller: 'TimelineCtrl'
       })
       .when('/system/:systemId', {
         templateUrl: 'partials/system/containers',
