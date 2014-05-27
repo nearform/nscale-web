@@ -73,6 +73,7 @@
       },
 
       reset: function(creds,win,fail){
+        console.log('auth reset');
         $http({method:'POST', url: '/auth/create_reset', data:creds, cache:false}).
           success(function(data) {
             if( win ) {return win(data);}

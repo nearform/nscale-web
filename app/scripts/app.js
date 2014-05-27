@@ -24,12 +24,16 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/forgot', {
+        templateUrl: 'partials/auth/forgot',
+        controller: 'ForgotCtrl'
+      })
       .when('/reset', {
-        templateUrl: 'partials/reset',
+        templateUrl: 'partials/auth/reset',
         controller: 'ResetCtrl'
       })
       .when('/confirm', {
-        templateUrl: 'partials/confirm',
+        templateUrl: 'partials/auth/confirm',
         controller: 'ConfirmCtrl'
       })
       .when('/home', {

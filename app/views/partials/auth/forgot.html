@@ -1,0 +1,32 @@
+
+<div class="container" >
+
+  <div class="header">
+    <ul class="nav nav-pills pull-right">
+    </ul>
+    <a href="/" class="navbar-brand"></a>
+  </div>
+
+  <div class="row" id="reset" ng-show="show">
+    <div class="col-lg-3">&nbsp;</div>
+
+    <div class="col-lg-5">
+      <h1>Forgot Password</h1>
+      <hr>
+      <div>
+        <form role="form">
+          <div style="height:85px" ng-class="{'form-group':true,'field':true}">
+            <label ng-show="input_email" class="show-hide">Email</label>
+            <input type="text" class="form-control" id="email" placeholder="Email" ng-model="input_email" tab-index="1" autocorrect="off">
+          </div>
+          <a ng-class="{action:true, slim:true, margin0:true}" href ng-click="forgot()">Submit</a>
+        </form>
+      </div>
+
+      <p ng-show="msg" style="margin-top:40px;color:red">{{ msg }}</p>
+    </div>
+
+    <div class="col-lg-4">&nbsp;</div>
+  </div>
+
+</div> <!-- /container -->
