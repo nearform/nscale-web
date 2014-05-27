@@ -1,0 +1,78 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title">Settings</h4>
+    </div>
+  </div>
+
+  <div class="row" id="account" ng-show="show">
+
+    <div class="col-lg-3"></div>
+
+    <div class="col-lg-6">
+
+      <hr>
+
+      <form class="form" role="form">
+
+        <div class="field">
+          <label>Profile Picture</label>
+          <div class="dropzoneWrap" style="float: none;">
+            <span ng-show="!user.avatar" class="glyphicon glyphicon-user"></span>
+            <div ng-show="user.avatar" class="userpic">
+              <img src="{{ user.avatar }}" class="img-circle"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+            <label ng-show="field_name" class="show-hide">Name</label>
+            <input  type="text" class="form-control" ng-model="field_name" placeholder="Name" autocorrect="off"/>
+        </div>
+
+        <div class="field">
+            <label ng-show="field_email" class="show-hide">Email</label>
+            <input  type="text" class="form-control" ng-model="field_email" placeholder="Email" autocorrect="off"/>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+              <a class="action pull-right" ng-click="update_user()">Save</a>
+            </div>
+        </div>
+
+        <p ng-show="msg" class="account_msg">{{ msg }}</p>
+
+      </form>
+
+      <form class="form" role="form">
+        <h2 class="bottomborder">Change Password</h2>
+
+        <div class="field">
+            <label ng-show="field_password" class="show-hide">Password</label>
+            <input  type="password" class="form-control" ng-model="field_password" placeholder="Password" autocorrect="off"/>
+        </div>
+
+        <div class="field">
+            <label ng-show="field_repeat" class="show-hide">Repeat Password</label>
+            <input  type="password" class="form-control" ng-model="field_repeat" placeholder="Repeat Password" autocorrect="off"/>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-9">
+              <a class="action pull-right" ng-click="change_pass()">Save</a>
+            </div>
+        </div>
+
+        <p ng-show="password_msg" class="account_msg">{{ password_msg }}</p>
+
+      </form>
+
+    </div>
+  </div>
+
+</div> <!-- /container -->

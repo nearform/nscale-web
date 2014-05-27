@@ -24,6 +24,14 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
       })
+      .when('/home', {
+        templateUrl: 'partials/home',
+        controller: 'HomeCtrl'
+      })
+      .when('/settings', {
+        templateUrl: 'partials/settings',
+        controller: 'SettingsCtrl'
+      })
       .when('/forgot', {
         templateUrl: 'partials/auth/forgot',
         controller: 'ForgotCtrl'
@@ -36,9 +44,9 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/auth/confirm',
         controller: 'ConfirmCtrl'
       })
-      .when('/home', {
-        templateUrl: 'partials/home',
-        controller: 'HomeCtrl'
+      .when('/settings', {
+        templateUrl: 'partials/settings',
+        controller: 'SettingsCtrl'
       })
       .when('/system/add', {
         templateUrl: 'partials/system/add',
