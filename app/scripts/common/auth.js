@@ -5,11 +5,15 @@
 
 	var auth_module = angular.module('authService', []);
 
+  var loggedInUser = null;
+
 	auth_module.service('auth', function($http,$window) {
     return {
       checkLoggedIn: function(cb) {
+        if (loggedInUser) {return cb(loggedInUser);}
         this.instance(function(out){
           if (out.user) {
+            loggedInUser = out.user;
             cb(out.user);
           }
           else {
@@ -116,6 +120,7 @@
       logout: function(win,fail){
         $http({method:'POST', url: '/auth/logout', cache:false}).
           success(function(data) {
+            loggedInUser = null;
             if( win ) {return win(data);}
             $window.location.href='/';
             return;

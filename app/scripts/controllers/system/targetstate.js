@@ -2,12 +2,6 @@
 
 angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, socket) {
 
-  // Init
-  ctrlutil.init($scope, function(user) {
-    $scope.systemId = $routeParams.systemId;
-    loadSystem();
-  });
-
   var loadRevisions = function(systemId, callback) {
     api.get('/system/' + systemId + '/revisions', $scope.user, function(revisions) {
       $scope.revisions = revisions;
@@ -27,6 +21,12 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
       });
     });
   };
+
+  // Init
+  ctrlutil.init($scope, function(user) {
+    $scope.systemId = $routeParams.systemId;
+    loadSystem();
+  });
 
   // scope build variables
   $scope.show_build = false;
