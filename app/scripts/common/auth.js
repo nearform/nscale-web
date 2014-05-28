@@ -26,7 +26,7 @@
         $http({method:'POST', url: '/auth/login', data:creds, cache:false}).
           success(function(data) {
             if( win ) {return win(data);}
-            $window.location.href='/account';
+            $window.location.href='/home';
             return;
           }).
           error(function(data) {
@@ -38,7 +38,7 @@
         $http({method:'POST', url: '/auth/register', data:details, cache:false}).
           success(function(data) {
             if( win ) {return win(data);}
-            $window.location.href='/account';
+            $window.location.href='/home';
             return;
           }).
           error(function(data) {
