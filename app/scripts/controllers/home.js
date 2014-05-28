@@ -12,10 +12,13 @@ angular.module('nfdWebApp').controller('HomeCtrl', function ($scope, $http, $loc
 
   // System save
   $scope.save = function() {
+    $scope.saveClicked = true;
+    if ($scope.form.$invalid) {
+      return;
+    }
 
-    // TODO Replace with angular validation
-    if (!$scope.systemName) {$scope.msg = 'Please specify system name'; return;}
-    if (validator.hasSpaces($scope.systemName)) {$scope.msg = 'System name must have no spaces'; return;}
+    // Remove any leading or traling whitespace
+    $scope.systemName = $scope.systemName.trim();
 
     api.post('/system', {name:$scope.systemName}, $scope.user, function(system){
       $scope.msg = 'System saved';

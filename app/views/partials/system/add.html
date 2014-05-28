@@ -18,10 +18,12 @@
 
         <div class="col-lg-6">
 
-          <form role="form">
-            <div class="field">
+          <form name="form" role="form" novalidate ng-submit="save()">
+            <div class="field" ng-class="{'form-group':true,'field':true, 'has-error': saveClicked && form.name.$invalid}">
                 <label ng-show="systemName" class="show-hide">System Name</label>
-                <input type="text" class="form-control" ng-model="systemName" placeholder="System Name" autofocus autocorrect="off"/>
+                <input type="text" id="name" name="name" class="form-control" ng-model="systemName" placeholder="System Name" autofocus autocorrect="off" required ng-pattern="/^[^\s]+$/"/>
+                <span ng-show="saveClicked && form.name.$error.required" class="error">System name is required</span>
+                <span ng-show="saveClicked && form.name.$error.pattern" class="error">System name must have no spaces</span>
             </div>
           </form>
 

@@ -12,10 +12,12 @@ angular.module('nfdWebApp').controller('SystemCtrl', function ($scope, $http, $l
 
   // System update
   $scope.update = function() {
-
-    // TODO Replace with angular validation
-    if (!$scope.system.name) {$scope.msg = 'Please specify system name'; return;}
-    if (validator.hasSpaces($scope.system.name)) {$scope.msg = 'System name must have no spaces'; return;}
+    $scope.updateClicked = true;
+    if ($scope.form.$invalid) {
+      return;
+    }
+    // Remove any leading or traling whitespace
+    $scope.system.name = $scope.system.name.trim();
 
     api.put('/system/' + $scope.system.id, $scope.system, $scope.user, function(result){
       $scope.msg = 'System updated';
