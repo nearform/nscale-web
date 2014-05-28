@@ -32,42 +32,45 @@ angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $win
 	};
 
   $scope.signin = function() {
+    $scope.msg = null;
+    $scope.signinClicked = true;
+    $scope.signupClicked = false;
+    if ($scope.form.email.$invalid || $scope.form.password.$error.required) {
+      return;
+    }
     var creds = {
       email: $scope.input_email,
       password: $scope.input_password
     };
-
-    if(validator.isEmpty(creds.email) || validator.isEmpty(creds.password)) {
-      $scope.msg = msgmap['missing-fields'];
-      return;
-    }
-
+    console.log(creds);
     auth.login(creds, null, function(out) {
       $scope.msg = msgmap[out.why] || msgmap.unknown;
     });
   };
 
   $scope.signup = function(){
+    $scope.msg = null;
+    $scope.signupClicked = true;
+    $scope.signinClicked = false;
+    if ($scope.form.name.$invalid || $scope.form.email.$invalid || $scope.form.password.$invalid) {
+      return;
+    }
     var creds = {
       name: $scope.input_name,
       email: $scope.input_email,
       password: $scope.input_password
     };
 
-    if(validator.isEmpty(creds.name) || validator.isEmpty(creds.email) || validator.isEmpty(creds.password)) {
-      $scope.msg = msgmap['missing-fields'];
-      return;
-    }
-    if(!validator.email(creds.email)) {
-      $scope.msg = msgmap['invalid-email'];
-      return;
-    }
+    // Hack that does validation manually because done angular way breaks signin :/
+    $scope.form.password.$error.weak = false;
     if(!validator.password(creds.password)) {
-      $scope.msg = msgmap['weak-password'];
+      $scope.form.password.$invalid = true;
+      $scope.form.password.$error.weak = true;
       return;
     }
 
     auth.register(creds, null, function( out ){
+      console.log(out);
       $scope.msg = msgmap[out.why] || msgmap.unknown;
     })
   };

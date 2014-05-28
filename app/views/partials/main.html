@@ -22,18 +22,23 @@
         </a>
         <div class="or">or</div>
         <h2 class="center bottomborder">Sign up or sign in with email</h2>
-        <form role="form">
-          <div ng-class="{'form-group':true,'field':true}">
+        <form name="form" role="form" novalidate>
+          <div ng-class="{'form-group':true,'field':true, 'has-error': signupClicked && form.name.$invalid}">
             <label ng-show="input_name" class="show-hide">Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Name" ng-model="input_name" tab-index="1" autocorrect="off">
+            <input type="text" class="form-control" id="username" name="name" placeholder="Name" ng-model="input_name" tab-index="1" autocorrect="off" required>
+            <span ng-show="signupClicked && form.name.$error.required" class="error">Name is required</span>
           </div>
-          <div ng-class="{'form-group':true,'field':true}">
+          <div ng-class="{'form-group':true,'field':true, 'has-error': (signinClicked || signupClicked) && form.email.$invalid}">
             <label ng-show="input_email" class="show-hide">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="Email" ng-model="input_email" tab-index="2" autocorrect="off">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="input_email" tab-index="2" autocorrect="off" required email>
+            <span ng-show="(signinClicked || signupClicked) && form.email.$error.required" class="error">Email is required</span>
+            <span ng-show="(signinClicked || signupClicked) && form.email.$error.email" class="error">Email is not valid</span>
           </div>
-          <div ng-class="{'form-group':true,'field':true}">
+          <div ng-class="{'form-group':true,'field':true, 'has-error': (signinClicked && form.password.$error.required) || (signupClicked && form.password.$invalid)}">
             <label ng-show="input_password" class="show-hide">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Password" ng-model="input_password" tab-index="3" autocorrect="off">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="input_password" tab-index="3" autocorrect="off" required>
+            <span ng-show="(signinClicked || signupClicked) && form.password.$error.required" class="error">Password is required</span>
+            <span ng-show="signupClicked && form.password.$error.weak" class="error">Password is too weak</span>
           </div>
         </form>
         <table id="loginbtns"><tr>
