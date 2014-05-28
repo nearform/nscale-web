@@ -19,7 +19,7 @@
         <div class="col-lg-6">
 
           <form name="form" role="form" novalidate ng-submit="update()">
-            <div class="field" ng-class="{'form-group':true,'field':true, 'has-error': updateClicked && form.name.$invalid}">
+            <div ng-class="{'form-group':true,'field':true, 'has-error': updateClicked && form.name.$invalid}">
                 <label ng-show="form.name.$invalid || system.name" class="show-hide">System Name</label>
                 <input type="text" id="name" name="name" class="form-control" ng-model="system.name" placeholder="System Name" autocorrect="off" required ng-pattern="/^[^\s]+$/"/>
                 <span ng-show="updateClicked && form.name.$error.required" class="error">System name is required</span>

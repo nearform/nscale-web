@@ -18,21 +18,23 @@
 
         <div class="col-lg-6">
 
-          <form role="form">
-            <div class="field">
+          <form name="form" role="form" novalidate>
+            <div ng-class="{'form-group':true,'field':true, 'has-error': updateClicked && form.name.$invalid}">
                 <label>Container Name</label>
-                <input type="text" class="form-control" ng-model="container.name" placeholder="Container Name" autocorrect="off" tabindex="1"/>
+                <input  type="text" class="form-control" id="name" name="name" ng-model="container.name" placeholder="Container Name" autofocus autocorrect="off" tabindex="1" required/>
+                <span ng-show="updateClicked && form.name.$error.required" class="error">Container name is required</span>
             </div>
 
-            <div class="field">
+            <div ng-class="{'form-group':true,'field':true, 'has-error': updateClicked && form.type.$invalid}">
               <label>Container Type</label>
-              <select ui-select2 ng-model="container.type" data-placeholder="Container Type" ng-required="true" tabindex="2">
+              <select ui-select2 id="type" name="type" ng-model="container.type" data-placeholder="Container Type" ng-required="true" tabindex="2" required>
                   <option value=""></option>
                   <option value="aws-ami">AMI</option>
                   <option value="aws-sg">Security Group</option>
                   <option value="aws-elb">Load balancer</option>
                   <option value="docker">Docker container</option>
               </select>
+              <span ng-show="updateClicked && form.type.$error.required" class="error"><br/>Container type is required</span>
             </div>
 
             <div ng-show="container.type == 'docker'">

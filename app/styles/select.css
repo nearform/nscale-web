@@ -23,6 +23,10 @@
 	line-height: 20px;
 }
 
+.field.has-error .select2-container .select2-choice {
+	border-bottom: 2px solid #d9534f;
+}
+
 .select2-container .select2-choice .select2-arrow b {
 	background-position: 0 -2px;
 }

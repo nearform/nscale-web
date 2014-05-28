@@ -100,6 +100,9 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
   // Save container
   $scope.save = function() {
 
+    $scope.saveClicked = true;
+    if ($scope.form.$invalid) {return;}
+
     // TODO Only save specific properties that are associated with container type
 
     setRepositoryToken();
@@ -112,6 +115,9 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
 
   // Update container
   $scope.update = function() {
+
+    $scope.updateClicked = true;
+    if ($scope.form.$invalid) {return;}
 
     // TODO Only save specific properties that are associated with container type
 
