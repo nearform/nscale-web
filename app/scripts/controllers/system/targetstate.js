@@ -158,7 +158,7 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
 
     $scope.buildOutput.splice(0,$scope.buildOutput.length);
 
-    socket.emit('system/deploy', {user: $scope.user.id, systemId:systemId, revisionId:revisionId}, function (data) {
+    socket.emit('system/deploy', {user: $scope.user.id, accessToken: $scope.user.token, systemId:systemId, revisionId:revisionId}, function (data) {
       console.dir('deploy emitted');
       console.dir(data);
     });

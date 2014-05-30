@@ -75,7 +75,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
 
       $scope.buildOutput.splice(0,$scope.buildOutput.length);
 
-      socket.emit('build', {user: $scope.user.id, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
+      socket.emit('build', {user: $scope.user.id, accessToken: $scope.user.token, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
           console.dir('build emitted');
           console.dir(data);
       });
@@ -89,7 +89,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
 
       $scope.buildOutput.splice(0,$scope.buildOutput.length);
 
-      socket.emit('deploy', {user: $scope.user.id, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
+      socket.emit('deploy', {user: $scope.user.id, accessToken: $scope.user.token, systemId:$scope.systemId, containerId:$scope.containerId}, function (data) {
           console.dir('deploy emitted');
           console.dir(data);
       });

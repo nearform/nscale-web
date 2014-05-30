@@ -50,7 +50,7 @@ angular.module('nfdWebApp').controller('ContainersCtrl', function ($scope, $http
 
     $scope.buildOutput.splice(0,$scope.buildOutput.length);
 
-    socket.emit('system/deploy', {user: $scope.user, systemId: systemId}, function (data) {
+    socket.emit('system/deploy', {user: $scope.user, accessToken: $scope.user.token, systemId: systemId}, function (data) {
       console.dir('deploy emitted');
       console.dir(data);
     });

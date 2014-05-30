@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $window, $location, auth, validator) {
+angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $window, $location, api, auth, ctrlutil, validator) {
 
   var msgmap = {
     'unknown': 'Unable to perform your request at this time - please try again later.',
@@ -42,10 +42,20 @@ angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $win
       email: $scope.input_email,
       password: $scope.input_password
     };
-    console.log(creds);
-    auth.login(creds, null, function(out) {
-      $scope.msg = msgmap[out.why] || msgmap.unknown;
+
+    api.login(creds, function(user){
+      if (user) {
+        $location.path('/home');
+      } else {
+        // TODO
+        // $scope.msg = msgmap[out.why] || msgmap.unknown;
+        $scope.msg = msgmap.unknown;
+      }
     });
+    // auth.login(creds, null, function(out) {
+    //   $scope.msg = msgmap[out.why] || msgmap.unknown;
+    // });
+
   };
 
   $scope.signup = function(){
