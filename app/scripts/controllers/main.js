@@ -43,18 +43,11 @@ angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $win
       password: $scope.input_password
     };
 
-    api.login(creds, function(user){
-      if (user) {
-        $location.path('/home');
-      } else {
-        // TODO
-        // $scope.msg = msgmap[out.why] || msgmap.unknown;
-        $scope.msg = msgmap.unknown;
-      }
+    api.login(creds, function(out){
+      if (out.user) {$location.path('/home');}
+    }, function(out) {
+      $scope.msg = msgmap[out.why] || msgmap.unknown;
     });
-    // auth.login(creds, null, function(out) {
-    //   $scope.msg = msgmap[out.why] || msgmap.unknown;
-    // });
 
   };
 

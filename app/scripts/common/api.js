@@ -15,7 +15,7 @@
       login: function(creds,win,fail){
         this.call('POST','/auth/login',creds,{},
           function(out){
-            apiLoggedInUser = out;
+            apiLoggedInUser = out.user;
             if( win ) {return win(out);}
           }
           ,fail);
