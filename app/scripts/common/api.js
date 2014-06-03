@@ -23,17 +23,19 @@
       checkLoggedIn: function(cb) {
         if (apiLoggedInUser) {return cb(apiLoggedInUser);}
 
-        // TODO - Fix
-        cb(null);
-        // this.instance(function(out){
-        //   if (out.user) {
-        //     apiLoggedInUser = out.user;
-        //     cb(out.user);
-        //   }
-        //   else {
-        //     window.location.href='/';
-        //   }
-        // });
+        this.call('POST','/auth/instance',null,{},
+          function(out){
+            if (out.user) {
+              apiLoggedInUser = out.user;
+              cb(apiLoggedInUser);
+            }
+            else {
+              window.location.href='/';
+            }
+          }
+          ,function(out) {
+            window.location.href='/';
+          });
       },
 
       get: function(path,user,win,fail){
@@ -52,6 +54,7 @@
         var params = {
           method:method,
           url: apibase+path,
+          withCredentials: true, // TODO is this a good idea?
           data:data,
           cache:false,
           // TODO Hack, should be using some sort of auth token
