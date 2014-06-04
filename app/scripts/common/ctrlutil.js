@@ -3,9 +3,9 @@
 
 (function(){
 
-	var ctrl_util_module = angular.module('ctrlUtilService', ['authService', 'apiService']);
+	var ctrl_util_module = angular.module('ctrlUtilService', ['apiService']);
 
-	ctrl_util_module.service('ctrlutil', function(auth, api) {
+	ctrl_util_module.service('ctrlutil', function(api) {
     return {
       init: function($scope, cb) {
 
@@ -13,7 +13,7 @@
         $scope.show = false;
 
         $scope.btn_signout = function() {
-          auth.logout();
+          api.logout();
         }
 
         api.checkLoggedIn(function(user) {

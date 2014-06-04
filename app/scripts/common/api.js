@@ -37,6 +37,14 @@
             window.location.href='/';
           });
       },
+      logout: function(){
+        this.call('POST','/auth/logout',null,{},
+          function(out){
+            apiLoggedInUser = null;
+            window.location.href='/';
+          }
+          ,null);
+      },
 
       get: function(path,user,win,fail){
         this.call('GET',path,null,user,win,fail);
