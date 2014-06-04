@@ -20,6 +20,11 @@
           }
           ,fail);
       },
+
+      githubLogin: function(){
+        window.location.href=apibase+'/auth/github';
+      },
+
       checkLoggedIn: function(cb) {
         if (apiLoggedInUser) {return cb(apiLoggedInUser);}
 

@@ -19,7 +19,7 @@ angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $win
     'invalid-confirm-code': 'That confirmation code is not valid.'
   };
 
-  auth.instance(function(out){
+  api.post('/auth/instance', null, null, function(out){
     if (out.user) {
       $location.path('/home');
     } else {
@@ -28,7 +28,7 @@ angular.module('nfdWebApp').controller('MainCtrl', function ($scope, $http, $win
   });
 
 	$scope.github_login = function() {
-		$window.location.href = '/auth/github';
+		api.githubLogin();
 	};
 
   $scope.signin = function() {
