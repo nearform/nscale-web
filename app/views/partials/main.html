@@ -21,15 +21,16 @@
           Sign in with Github
         </a>
         <div class="or">or</div>
-        <h2 class="center bottomborder">Sign up or sign in with email</h2>
-        <form name="form" role="form" novalidate>
-          <div ng-class="{'form-group':true,'field':true, 'has-error': signupClicked && form.name.$invalid}">
+        <!-- <h2 class="center bottomborder">Sign up or sign in with email</h2> -->
+        <h2 class="center bottomborder">Sign in with email</h2>
+        <form name="form" role="form" style="margin-top:40px;" novalidate>
+          <!-- <div ng-class="{'form-group':true,'field':true, 'has-error': signupClicked && form.name.$invalid}">
             <label ng-show="input_name" class="show-hide">Name</label>
             <input type="text" class="form-control" id="username" name="name" placeholder="Name" ng-model="input_name" tab-index="1" autocorrect="off" required>
             <span ng-show="signupClicked && form.name.$error.required" class="error">Name is required</span>
-          </div>
+          </div> -->
           <div ng-class="{'form-group':true,'field':true, 'has-error': (signinClicked || signupClicked) && form.email.$invalid}">
-            <label ng-show="input_email" class="show-hide">Email</label>
+            <label ng-show="input_email || form.email.$dirty" class="show-hide">Email</label>
             <input type="email" class="form-control" id="email" name="email" placeholder="Email" ng-model="input_email" tab-index="2" autocorrect="off" required email>
             <span ng-show="(signinClicked || signupClicked) && form.email.$error.required" class="error">Email is required</span>
             <span ng-show="(signinClicked || signupClicked) && form.email.$error.email" class="error">Email is not valid</span>
@@ -42,7 +43,7 @@
           </div>
         </form>
         <table id="loginbtns"><tr>
-           <td class="left"><a ng-class="{action:true, slim:true}" href="#"  ng-click="signup()" tab-index="5">Sign Up</a></td>
+           <!-- <td class="left"><a ng-class="{action:true, slim:true}" href="#"  ng-click="signup()" tab-index="5">Sign Up</a></td> -->
 
            <td class="right"><a ng-class="{action:true, slim:true, margin0:true}" href="#"  ng-click="signin()" tab-index="4">Sign In</a></td>
         </tr></table>

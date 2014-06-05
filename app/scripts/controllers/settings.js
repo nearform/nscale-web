@@ -21,6 +21,10 @@ angular.module('nfdWebApp').controller('SettingsCtrl', function ($scope, $http, 
   });
 
   $scope.update_user = function() {
+    // TODO Implement using api and not auth
+    alert('Not yet implemented');
+    return;
+
     var creds = {name:  $scope.field_name, email: $scope.field_email};
 
     if(validator.isEmpty(creds.name) || validator.isEmpty(creds.email)) {
@@ -39,6 +43,10 @@ angular.module('nfdWebApp').controller('SettingsCtrl', function ($scope, $http, 
   };
 
   $scope.change_pass = function() {
+    // TODO Implement using api and not auth
+    alert('Not yet implemented');
+    return;
+
     var data = {password: $scope.field_password, repeat: $scope.field_repeat};
 
     if(validator.isEmpty(data.password) || validator.isEmpty(data.repeat)) {
