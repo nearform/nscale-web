@@ -13,6 +13,11 @@
   <div class="row container-build" ng-show="show_build" scroll-glue>
     <div class="col-lg-12">
       <h4 class="title">Output:</h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%;">
+          {{ progress }}%
+        </div>
+      </div>
       <ul>
         <li ng-repeat="output in buildOutput">
           <span class="{{ output.type }}">{{ output.text }}</span> <i ng-show="show_spinner" class="fa fa-spinner fa-spin"></i>

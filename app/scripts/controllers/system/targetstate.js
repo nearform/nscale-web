@@ -32,13 +32,17 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
   $scope.show_build = false;
   $scope.show_spinner = false;
   $scope.buildOutput = [];
+  $scope.progress = 0;
 
   // Handle build output
   socket.on('stdout', function (out) {
       var outJson = JSON.parse(out);
       console.log(outJson);
-      if (outJson.level !== 'debug') {
-          $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+      if (outJson.level !== 'debug' && outJson.level !== 'progress') {
+        $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+      }
+      else if (outJson.level === 'progress') {
+        $scope.progress = outJson.stdout;
       }
   });
   socket.on('stderr', function (out) {
@@ -51,6 +55,7 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
   });
   socket.on('result', function (out) {
       $scope.show_spinner = false;
+      $scope.progress = 100;
       console.log(out);
       $scope.buildOutput.push({text:out, type:'result'});
       loadSystem();
@@ -155,6 +160,7 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
 
     $scope.show_build = true;
     $scope.show_spinner = true;
+    $scope.progress = 0;
 
     $scope.buildOutput.splice(0,$scope.buildOutput.length);
 
