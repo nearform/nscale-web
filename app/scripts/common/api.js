@@ -71,7 +71,7 @@
           data:data,
           cache:false,
           // TODO Hack, should be using some sort of auth token
-          headers:{'X-UserId':((user && user.id) ? user.id : ''), 'Authorization':'Bearer ' + ((user && user.token) ? user.token : '')}
+          headers:{'Authorization':'Bearer ' + ((user && user.token) ? user.token : '')}
         };
 
         $http( params ).
