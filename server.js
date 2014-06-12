@@ -15,8 +15,9 @@ var config = require('./lib/config/config');
 var app = express();
 require('./lib/config/express')(app);
 
+// TODO No longer need seneca, remove!
 // wait for seneca and its plugins to initialize
-require('./lib/seneca')(app, config, function () {
+// require('./lib/seneca')(app, config, function () {
 
 	// setup routes
 	require('./lib/routes')(app);
@@ -26,7 +27,7 @@ require('./lib/seneca')(app, config, function () {
 	  console.log('Express server listening on %s:%d, in %s mode', config.ip, config.port, app.get('env'));
 	});
 
-});
+// });
 
 // Expose app
 exports = module.exports = app;
