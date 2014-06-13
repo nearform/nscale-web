@@ -46,7 +46,7 @@
 
             <li ng-repeat="revision in revisions" class="revision-row {{ revision.selected ? 'selected' : '' }} {{ revision.deployed ? 'deployed' : '' }}">
               <div class="revision-title">
-                <a ng-click="selectRevision(revision)" {!href="/system/{{ systemId }}/revision/{{ revision.revision }}"!}><span>{{ revision.revision }}: {{ revision.description }}</span>
+                <a ng-click="selectRevision(revision)" {!href="/system/{{ systemId }}/revision/{{ revision.revision }}"!}><span>{{ revision.revision }}: {{ revision.description.split(':')[0] }}</span>
                 &nbsp;<span>[{{ revision.guid }}]</span></a>
               </div>
             </li>
