@@ -4,6 +4,7 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
 
   var loadRevisions = function(systemId, callback) {
     api.get('/system/' + systemId + '/revisions', $scope.user, function(revisions) {
+      console.log(revisions);
       $scope.revisions = revisions;
       callback(revisions);
     });

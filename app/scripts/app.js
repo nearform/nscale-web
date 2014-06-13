@@ -15,8 +15,7 @@ angular.module('nfdWebApp', [
   'socketService',
   'ui.select2',
   'ui.tree',
-  'topologyDirectives',
-  'angular-momentjs'
+  'topologyDirectives'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
