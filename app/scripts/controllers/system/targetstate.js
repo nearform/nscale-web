@@ -42,7 +42,7 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
         $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
       }
       else if (outJson.level === 'progress') {
-        $scope.progress = outJson.stdout;
+        $scope.progress = Math.ceil(outJson.stdout);
       }
   });
   socket.on('stderr', function (out) {

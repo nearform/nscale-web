@@ -46,14 +46,14 @@
 
             <li ng-repeat="revision in revisions" class="revision-row {{ revision.selected ? 'selected' : '' }} {{ revision.deployed ? 'deployed' : '' }}">
               <div class="revision-title">
-                <a ng-click="selectRevision(revision)" {!href="/system/{{ systemId }}/revision/{{ revision.revision }}"!}><span>{{ revision.revision }}: {{ revision.description }}</span>
+                <a ng-click="selectRevision(revision)" {!href="/system/{{ systemId }}/revision/{{ revision.revision }}"!}><span>{{ revision.revision }}: {{ revision.description.split(':')[0] }}</span>
                 &nbsp;<span>[{{ revision.guid }}]</span></a>
               </div>
             </li>
 
           </ul>
           <br>
-          <a class="action pull-right" ng-show="true" ng-click="deploy(systemId, selectedRevision.revision)"><span class="glyphicon glyphicon-arrow-up"></span> Deploy</a>
+          <a class="action pull-right" ng-show="true" ng-click="deploy(systemId, selectedRevision.guid)"><span class="glyphicon glyphicon-arrow-up"></span> Deploy</a>
         </div>
       </div>
 
