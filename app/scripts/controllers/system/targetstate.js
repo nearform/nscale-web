@@ -152,7 +152,10 @@ angular.module('nfdWebApp').controller('TargetStateCtrl', function ($scope, $htt
     });
     revision.selected = true;
     $scope.selectedRevision = revision;
-    buildTree(revision.system);
+
+    api.get('/system/' + $scope.systemId + '/revision/' + revision.id, $scope.user, function(revisionDetail) {
+      buildTree(revisionDetail);
+    });
   }
 
   // Deploy trigger
