@@ -2,42 +2,42 @@
 
 angular.module('nfdWebApp').controller('TimelineCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, auth) {
 
-	// $scope.moment = $moment;
+  // From http://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
+	$scope.moment = function(dateISOString) {
+		return {
+		  fromNow: function() {
 
-  $scope.moment = function(dateISOString) {
-        return {
-              fromNow: function() {
+        // From http://stackoverflow.com/questions/15517024/convert-iso-date-string-in-javascript-to-date-object-without-converting-to-loca
+		    var date = new Date(dateISOString);
+		    date =   new Date( date.getTime() + ( date.getTimezoneOffset() * 60000 ) );
 
-                      var date = new Date(dateISOString);
-                            date =   new Date( date.getTime() + ( date.getTimezoneOffset() * 60000 ) );
+		    var seconds = Math.floor((new Date() - date) / 1000);
 
-                                  var seconds = Math.floor((new Date() - date) / 1000);
+		    var interval = Math.floor(seconds / 31536000);
 
-                                        var interval = Math.floor(seconds / 31536000);
-
-                                              if (interval > 1) {
-                                                        return interval + " years";
-                                                              }
-                                                    interval = Math.floor(seconds / 2592000);
-                                                          if (interval > 1) {
-                                                                    return interval + " months";
-                                                                          }
-                                                                interval = Math.floor(seconds / 86400);
-                                                                      if (interval > 1) {
-                                                                                return interval + " days";
-                                                                                      }
-                                                                            interval = Math.floor(seconds / 3600);
-                                                                                  if (interval > 1) {
-                                                                                            return interval + " hours";
-                                                                                                  }
-                                                                                        interval = Math.floor(seconds / 60);
-                                                                                              if (interval > 1) {
-                                                                                                        return interval + " minutes";
-                                                                                                              }
-                                                                                                      return Math.floor(seconds) + " seconds";
-                                                                                                            }
-                           };
-          };
+		    if (interval > 1) {
+		        return interval + " years ago";
+		    }
+		    interval = Math.floor(seconds / 2592000);
+		    if (interval > 1) {
+		        return interval + " months ago";
+		    }
+		    interval = Math.floor(seconds / 86400);
+		    if (interval > 1) {
+		        return interval + " days ago";
+		    }
+		    interval = Math.floor(seconds / 3600);
+		    if (interval > 1) {
+		        return interval + " hours ago";
+		    }
+		    interval = Math.floor(seconds / 60);
+		    if (interval > 1) {
+		        return interval + " minutes ago";
+		    }
+		    return Math.floor(seconds) + " seconds ago";
+		  }
+		};
+  };
 
   // Init
   ctrlutil.init($scope, function(user) {
@@ -54,12 +54,12 @@ angular.module('nfdWebApp').controller('TimelineCtrl', function ($scope, $http, 
   	api.get('/timeline?systemId=' + $scope.systemId, $scope.user, function(result){
       $scope.timeline = result;
 
-      _.each($scope.timeline, function(t) {
+      _.each($scope.timeline.entries, function(t) {
         t.guid = guid();
       });
 
       var avatars = [];
-      _.each($scope.timeline, function(t) {
+      _.each($scope.timeline.entries, function(t) {
         if (t.user === $scope.user.id) {
           t.avatar = $scope.user.avatar;
         }

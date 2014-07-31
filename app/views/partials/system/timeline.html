@@ -37,7 +37,7 @@
       <div class="col-lg-10">
 
         <ul class="activity">
-          <li class="list-row" ng-repeat="item in timeline">
+          <li class="list-row" ng-repeat="item in timeline.entries">
             <div>
               <div class="pull-left img-responsive thumb margin10 img-thumbnail">
               <span ng-show="!item.avatar" class="glyphicon glyphicon-user"></span>
@@ -45,8 +45,8 @@
                     <img src="{{ item.avatar }}" class="img-circle small"/>
                 </div>
               </div>
-              <em>{{ moment(item.created).fromNow() }}</em>
-              <article><p>{{ item.data.text }} <small>[{{ item.guid }}]</small></p></article>
+              <em>{{ item.user.name }} - {{ moment(item.ts).fromNow() }}</em>
+              <article><p>{{ item.details }}</p></article>
             </div>
           </li>
         </ul>

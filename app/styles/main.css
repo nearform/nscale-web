@@ -885,6 +885,7 @@ ul.activity li div {
 }
 
 ul.activity li em {
+  padding-right: 5px;
   opacity: 0.5;
   filter:alpha(opacity=50); /* For IE8 and earlier */
 }
