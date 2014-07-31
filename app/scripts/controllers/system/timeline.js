@@ -54,12 +54,12 @@ angular.module('nfdWebApp').controller('TimelineCtrl', function ($scope, $http, 
   	api.get('/timeline?systemId=' + $scope.systemId, $scope.user, function(result){
       $scope.timeline = result;
 
-      _.each($scope.timeline, function(t) {
+      _.each($scope.timeline.entries, function(t) {
         t.guid = guid();
       });
 
       var avatars = [];
-      _.each($scope.timeline, function(t) {
+      _.each($scope.timeline.entries, function(t) {
         if (t.user === $scope.user.id) {
           t.avatar = $scope.user.avatar;
         }
