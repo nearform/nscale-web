@@ -618,6 +618,9 @@ form.form-search:before {
 .containers ul li .container-title span:nth-child(1) {
   float: left;
   width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .containers ul li.container-row ul li a {
