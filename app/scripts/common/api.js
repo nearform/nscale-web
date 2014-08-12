@@ -3,10 +3,7 @@
 
 (function(){
 
-  // TODO should be possible to override from config
-  //var apibase = 'http://localhost:3000/api/1.0';
-  //var apibase = 'http://ec2-54-216-145-36.eu-west-1.compute.amazonaws.com:3000/api/1.0';
-  var apibase = 'http://nfd.nearform.com:3000/api/1.0';
+  var apibase = nfd.context.apibase;
 
 	var api_module = angular.module('apiService', []);
 
