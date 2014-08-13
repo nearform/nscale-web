@@ -1,0 +1,38 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title"><a href="/home">Systems</a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="/system/{{ systemId }}">{{ systemName }}</a></h4>
+    </div>
+    <div ng-include="'partials/system/actionbar'"></div>
+  </div>
+
+  <div class="row-fluid" ng-show="show">
+
+    <div class="col-lg-6">
+
+      <div class="row revisions">
+        <div class="col-lg-12">
+          <h4>Revisions</h4>
+          <ul>
+
+            <li ng-repeat="revision in revisions" class="revision-row {{ revision.selected ? 'selected' : '' }} {{ revision.deployed ? 'deployed' : '' }}">
+              <div class="revision-title">
+                <a ng-click="selectRevision(revision)"><span>{{ revision.id }}: {{ revision.message.split(':')[0] }}</span></a>
+              </div>
+            </li>
+
+          </ul>
+          <br>
+          <a class="action pull-right" ng-show="true" ng-click="deploy(systemId, selectedRevision.guid)"><span class="glyphicon glyphicon-arrow-up"></span> Deploy</a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->

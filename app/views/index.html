@@ -25,13 +25,11 @@
     <link href="styles/select.css" rel="stylesheet">
     <link href="styles/float-label.css" rel="stylesheet">
     <link href="styles/upload.css" rel="stylesheet">
+    <link href="styles/d3chart.css" rel="stylesheet" >
 
     <link href="styles/main.css" rel="stylesheet" >
     <link href="styles/theme-light.css" rel="stylesheet">
 
-    <link href="styles/topology.css" rel="stylesheet">
-    <link href="styles/googlejsapi.css" rel="stylesheet">
-    <link href="styles/orgchart.css" rel="stylesheet">
     <!-- endbuild -->
   </head>
   <body ng-app="nfdWebApp">
@@ -61,6 +59,7 @@
     <!-- build:js(app) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/json3/lib/json3.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
@@ -92,10 +91,6 @@
     <script src="scripts/common/validator.js"></script>
     <script src="scripts/common/socket.js"></script>
 
-    <script src="scripts/topology/google-jsapi.js"></script>
-    <script src="scripts/topology/google-jsapi-orgchart.js"></script>
-    <script src="scripts/topology/dtopology.js"></script>
-
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/navbar.js"></script>
@@ -107,6 +102,8 @@
     <script src="scripts/controllers/system/actionbar.js"></script>
     <script src="scripts/controllers/system/system.js"></script>
     <script src="scripts/controllers/system/containers.js"></script>
+    <script src="scripts/controllers/system/state.js"></script>
+    <script src="scripts/controllers/system/revisions.js"></script>
     <script src="scripts/controllers/system/currentstate.js"></script>
     <script src="scripts/controllers/system/targetstate.js"></script>
     <script src="scripts/controllers/system/timeline.js"></script>

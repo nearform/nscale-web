@@ -117,6 +117,14 @@ a.navbar-brand {
   min-height: 60px;
 }
 
+.revisionTitle {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.revisionTitle span {
+  font-size: 14px;
+}
+
 .userpic {
 }
 
@@ -1083,4 +1091,31 @@ table#seneca-settings td:nth-child(2) {
 
 .rating span.star:hover:before {
     color: #cfb02c;
+}
+
+
+
+/*
+d3
+*/
+
+.node {
+    cursor: pointer;
+}
+.node rect {
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 1px;
+}
+.node text {
+    font: 10px sans-serif;
+}
+.link {
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 1.5px;
+}
+
+#systemstate {
+    overflow: hidden;
 }

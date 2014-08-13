@@ -1,6 +1,8 @@
 <ul class="nav navbar-nav navbar-right" ng-controller="ActionBarCtrl">
   <li ng-class="{ active: isActive('/system/' + systemId)}"><a href="/system/{{ systemId }}"><span class="glyphicon glyphicon-th"></span> Containers</a></li>
-  <li ng-class="{ active: isActive('/system/' + systemId + '/currentstate')}"><a href="/system/{{ systemId }}/currentstate"><span class="glyphicon glyphicon-cloud"></span> Current state</a></li>
-  <li ng-class="{ active: isActive('/system/' + systemId + '/targetstate')}"><a href="/system/{{ systemId }}/targetstate"><span class="glyphicon glyphicon-cloud-upload"></span> Target state</a></li>
-  <li ng-class="{ active: isActive('/system/' + systemId + '/timeline')}"><a href="/system/{{ systemId }}/timeline"><span class="glyphicon glyphicon-th-list"></span> System timeline</a></li>
+  <li ng-class="{ active: isActive('/system/' + systemId + '/state')}"><a href="/system/{{ systemId }}/state"><span class="glyphicon glyphicon-cloud"></span> System state</a></li>
+  <li ng-class="{ active: isActive('/system/' + systemId + '/revisions')}"><a href="/system/{{ systemId }}/revisions"><span class="glyphicon glyphicon-th-list"></span> Revisions</a></li>
+  <!-- <li ng-class="{ active: isActive('/system/' + systemId + '/currentstate')}"><a href="/system/{{ systemId }}/currentstate"><span class="glyphicon glyphicon-cloud"></span> Current state</a></li> -->
+  <!-- <li ng-class="{ active: isActive('/system/' + systemId + '/targetstate')}"><a href="/system/{{ systemId }}/targetstate"><span class="glyphicon glyphicon-cloud-upload"></span> Target state</a></li> -->
+  <li ng-class="{ active: isActive('/system/' + systemId + '/timeline')}"><a href="/system/{{ systemId }}/timeline"><span class="glyphicon glyphicon-time"></span> System timeline</a></li>
 </ul>

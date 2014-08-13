@@ -14,8 +14,7 @@ angular.module('nfdWebApp', [
   'validatorService',
   'socketService',
   'ui.select2',
-  'ui.tree',
-  'topologyDirectives'
+  'ui.tree'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -54,6 +53,14 @@ angular.module('nfdWebApp', [
       .when('/system/:systemId/edit', {
         templateUrl: 'partials/system/edit',
         controller: 'SystemCtrl'
+      })
+      .when('/system/:systemId/state', {
+        templateUrl: 'partials/system/state',
+        controller: 'StateCtrl'
+      })
+      .when('/system/:systemId/revisions', {
+        templateUrl: 'partials/system/revisions',
+        controller: 'RevisionsCtrl'
       })
       .when('/system/:systemId/currentstate', {
         templateUrl: 'partials/system/currentstate',
