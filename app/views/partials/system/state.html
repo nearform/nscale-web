@@ -10,16 +10,14 @@
     <div ng-include="'partials/system/actionbar'"></div>
   </div>
 
-  <div class="row">
+  <div class="row" ng-show="show">
     <div class="col-lg-5">
-      <h4 class="revisionTitle">Deployed revision<br/><span>10 days ago - <a href="/system/{{ systemId }}/revision/33417ff8f1299c1b35c40b562c5b8310cf66a4cf">33417ff8f1299c1b35c40b562c5b8310cf66a4cf</a></span></h4>
+      <h4 class="revisionTitle">Deployed state<br/><span>{{ moment(deployedRevision.date).fromNow() }} - <a href="/system/{{ systemId }}/revision/{{ deployedRevision.id }}">{{ deployedRevision.id }}</a></span></h4>
     </div>
     <div class="col-lg-7">
-      <select ui-select2 class="select-filter pull-right" ng-model="typeFilter" data-placeholder="Container Type">
+      <select ui-select2 class="select-filter pull-right" ng-model="typeFilter">
         <option value="">Pick a revision:</option>
-        <option value="cf3ad0afc09d489c951c635825539995c70f7996">cf3ad0afc09d489c951c635825539995c70f7996: built container</option>
-        <option value="430121de120ffbb63c8a8c8487b38f2ceb83b5c7">430121de120ffbb63c8a8c8487b38f2ceb83b5c7: moved web container back</option>
-        <option value="33417ff8f1299c1b35c40b562c5b8310cf66a4cf">33417ff8f1299c1b35c40b562c5b8310cf66a4cf: deployed</option>
+        <option ng-repeat="revision in revisions" value="{{ revision.id }}">{{ revision.id }}: {{ revision.message.split(':')[0] }}</option>
       </select>
     </div>
   </div>
@@ -28,8 +26,10 @@
 
   <div class="row" id="containers" ng-show="show">
 
-    <div id="systemstate" ng-show="user" class="col-lg-12 d3chart"></div>
-    <script src="scripts/d3/chart.js" charset="utf-8"></script>
+    <!-- <div id="systemstate" ng-show="user" class="col-lg-12 d3chart"></div> -->
+    <!--  <script src="scripts/d3/chart.js" charset="utf-8"></script> -->
+    <h4 ng-show="!deployedRevision">No revision deployed yet.</h4>
+    <div d3chart></div>
 
   </div>
 

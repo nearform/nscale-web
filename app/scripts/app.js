@@ -14,7 +14,8 @@ angular.module('nfdWebApp', [
   'validatorService',
   'socketService',
   'ui.select2',
-  'ui.tree'
+  'ui.tree',
+  'ngchart'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

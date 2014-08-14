@@ -2,6 +2,7 @@
 
 angular.module('nfdWebApp').controller('TimelineCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, auth) {
 
+  // TODO Refactor into its own module - also in state.js
   // From http://stackoverflow.com/questions/3177836/how-to-format-time-since-xxx-e-g-4-minutes-ago-similar-to-stack-exchange-site
 	$scope.moment = function(dateISOString) {
 		return {
