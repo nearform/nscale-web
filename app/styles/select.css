@@ -36,6 +36,10 @@
 	background: none;
 }
 
+.select2-container .select2-choice .active {
+	background-color: red;
+}
+
 .select2-container .select2-choice.select2-default > .select2-chosen {
 	color: #d5d5d5;
 }

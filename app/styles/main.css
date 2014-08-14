@@ -121,7 +121,7 @@ a.navbar-brand {
   margin-top: 5px;
   margin-left: 10px;
 }
-.revisionTitle span {
+.revisionTitle span.small {
   font-size: 14px;
 }
 
@@ -1094,28 +1094,3 @@ table#seneca-settings td:nth-child(2) {
 }
 
 
-
-/*
-d3
-*/
-
-.node {
-    cursor: pointer;
-}
-.node rect {
-    fill: #fff;
-    stroke: steelblue;
-    stroke-width: 1px;
-}
-.node text {
-    font: 10px sans-serif;
-}
-.link {
-    fill: none;
-    stroke: #ccc;
-    stroke-width: 1.5px;
-}
-
-#systemstate {
-    overflow: hidden;
-}

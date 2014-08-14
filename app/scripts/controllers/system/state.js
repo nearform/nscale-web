@@ -40,6 +40,10 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 		};
   };
 
+  $scope.ellipsis = function(s, length) {
+    return s.length > length ? s.substr(0, length - 1) + '...' : s;
+  }
+
 	var initSystemState = function(system) {
 
 		var containers = {};
@@ -101,10 +105,34 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
     });
   };
 
-  var getRevision = function(systemId, revision, callback) {
-    api.get('/system/' + systemId + '/revision/' + revision.id, $scope.user, function(revisionDetail) {
+  var getRevision = function(systemId, revisionId, callback) {
+    api.get('/system/' + systemId + '/revision/' + revisionId, $scope.user, function(revisionDetail) {
       callback(revisionDetail);
     });
+  }
+
+  var selectRevision = function(revisionId) {
+  	getRevision($scope.systemId, revisionId, function(revisionDetail) {
+			$scope.system = revisionDetail;
+			$scope.systemName = revisionDetail.name;
+			$scope.data = initSystemState(revisionDetail);
+			$scope.show = true;
+		});
+  }
+
+  $scope.pickRevision = function() {
+  	if ($scope.pickedRevisionId) {
+  		console.log($scope.pickedRevisionId);
+  		// Find picked revision
+			for (var i = 0; i < $scope.revisions.length; i++) {
+				var revision = $scope.revisions[i];
+				if (revision.id === $scope.pickedRevisionId) {
+					$scope.selectedRevision = revision;
+					break;
+				}
+			}
+  		selectRevision($scope.pickedRevisionId);
+  	}
   }
 
   // Init
@@ -116,26 +144,20 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 
 			// Find deployed revision
 			for (var i = 0; i < revisions.length; i++) {
-				var revision = revisions[i];
-				if (revision.deployed) {
-					$scope.deployedRevision = revision;
+				if (revisions[i].deployed) {
+					$scope.selectedRevision = revisions[i];
+					$scope.pickedRevisionId = revisions[i].id;
 					break;
 				}
 			}
 
 			// TODO What if no revisions have yet to be deployed? pick latest one?
-			if (!$scope.deployedRevision) {
+			if (!$scope.selectedRevision) {
 				console.log("No revision deployed yet");
 				return;
 			}
 
-			getRevision($scope.systemId, $scope.deployedRevision, function(deployedRevisionDetail) {
-				$scope.system = deployedRevisionDetail;
-				$scope.systemName = deployedRevisionDetail.name;
-				$scope.data = initSystemState(deployedRevisionDetail);
-				$scope.show = true;
-			});
-
+			selectRevision($scope.selectedRevision.id);
   	});
 
   });

@@ -11,7 +11,6 @@
         link: function(scope, element, attr, controller) {
 
           function init(root) {
-            console.log(root);
 
             var margin = {
                 top: 20,
@@ -35,7 +34,12 @@
 
             var zm;
 
-            var svg = d3.select("#systemstate").append("svg").attr("width", 1000).attr("height", 600)
+            // remove latest chart so that it can be replaced
+            d3.select("#d3chart").remove();
+
+            var svg = d3.select("#systemstate").append("svg")
+                .attr("id","d3chart")
+                .attr("width", 1000).attr("height", 600)
                 .call(zm = d3.behavior.zoom().scaleExtent([1,3]).on("zoom", redraw))
                 .append("g")
                 .attr("transform", "translate(" + 350 + "," + 20 + ")");
@@ -215,7 +219,7 @@
           if (!newValue) {
             return;
           }
-          init(scope.data);
+          init(newValue);
         });
 
       }

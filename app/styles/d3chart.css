@@ -8,7 +8,7 @@
 }
 .node rect {
     fill: #fff;
-    stroke: steelblue;
+    stroke: #000;
     stroke-width: 1px;
 }
 .node text {
