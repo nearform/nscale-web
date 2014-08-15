@@ -33,6 +33,18 @@
                 return [d.x + rectW / 2, d.y + rectH / 2];
             });
 
+            var tip = d3.tip()
+                .attr('class', 'd3-tip')
+                .offset([-10, 0])
+                .html(function(d) {
+                    var tooltip = "<strong>" + d.name + "</strong>";
+                    if (d.containerId) {
+                        tooltip += "<br/><small>" + d.containerType + "</small>";
+                        tooltip += "<br/><small>" + d.containerId + "</small>";
+                    }
+                    return tooltip;
+                });
+
             var zm;
 
             // remove latest chart so that it can be replaced
@@ -40,10 +52,15 @@
 
             var svg = d3.select("#systemstate").append("svg")
                 .attr("id","d3chart")
-                .attr("width", 1000).attr("height", 600)
-                .call(zm = d3.behavior.zoom().scaleExtent([1,3]).on("zoom", redraw))
+                // set viewBox and preserveAspectRatio instead of width and height to make it responsive
+                .attr("viewBox", "0 0 1000 600")
+                .attr("preserveAspectRatio", "xMinYMin meet")
+                // .attr("width", 1000).attr("height", 600)
+                .call(zm = d3.behavior.zoom().scaleExtent([0.5,3]).on("zoom", redraw))
                 .append("g")
                 .attr("transform", "translate(" + 350 + "," + 20 + ")");
+
+            svg.call(tip);
 
             //necessary so that zoom knows where to zoom and unzoom from
             zm.translate([350, 20]);
@@ -72,7 +89,7 @@
 
                 // Normalize for fixed-depth.
                 nodes.forEach(function (d) {
-                    d.y = d.depth * 180;
+                    d.y = d.depth * 125;
                 });
 
                 // Update the nodes…
@@ -94,18 +111,26 @@
                     .attr("height", rectH)
                     .attr("stroke", "black")
                     .attr("stroke-width", 1)
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide)
                     .style("fill", function (d) {
-                    return d._children ? "lightsteelblue" : "#fff";
-                });
+                        if (d.root) {return "#f8f8f8";}
+                        return d._children ? "lightsteelblue" : "#fff";
+                    });
 
                 nodeEnter.append("text")
                     .attr("x", rectW / 2)
                     .attr("y", rectH / 2)
                     .attr("dy", ".35em")
                     .attr("text-anchor", "middle")
+                    .on('mouseover', tip.show)
+                    .on('mouseout', tip.hide)
                     .text(function (d) {
-                    return d.name;
-                });
+                        return d.name;
+                    })
+                    .style("fill", function (d) {
+                        return d.root ? "#4183c4" : "#333333";
+                    });
 
                 // Transition nodes to their new position.
                 var nodeUpdate = node.transition()
@@ -120,8 +145,10 @@
                     .attr("stroke", "black")
                     .attr("stroke-width", 1)
                     .style("fill", function (d) {
-                    return d._children ? "lightsteelblue" : "#fff";
-                });
+                        if (d.root) {return "#f8f8f8";}
+                        return d._children ? "lightsteelblue" : "#fff";
+                    }
+                );
 
                 nodeUpdate.select("text")
                     .style("fill-opacity", 1);

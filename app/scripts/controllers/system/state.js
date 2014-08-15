@@ -40,9 +40,10 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 		};
   };
 
-  $scope.ellipsis = function(s, length) {
+  var ellipsis = function(s, length) {
     return s.length > length ? s.substr(0, length - 1) + '...' : s;
-  }
+  };
+  $scope.ellipsis = ellipsis;
 
 	var initSystemState = function(system) {
 
@@ -53,42 +54,65 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 	  }
 
 	  var allTopologies = {};
-	  var parentTopologies = [];
-	  jQuery.each(system.topology.containers, function(key, containerTopology) {
-	    allTopologies[containerTopology.id] = containerTopology;
-	    if (containerTopology.id === containerTopology.containedBy) {
-	      parentTopologies.push(containerTopology);
-	    }
+	  angular.forEach(system.topology.containers, function(containerTopology, key) {
+	    this[containerTopology.id] = containerTopology;
+	  }, allTopologies);
+
+	  angular.forEach(system.topology.containers, function(containerTopology, key) {
+	  	angular.forEach(containerTopology.contains, function(containerTopologyId, key) {
+	  		this[containerTopologyId].parent = containerTopology.id;
+	  	}, allTopologies);
 	  });
 
-	  var data = {};
+	  var parentTopologies = [];
+	  angular.forEach(allTopologies, function(containerTopology, key) {
+	  	if (!containerTopology.parent) {
+	  		this.push(containerTopology);
+	  	}
+	  }, parentTopologies);
 
-	  jQuery.each(parentTopologies, function(key, parentTopology) {
+	  var data = {
+	  	name: 'System State',
+	  	root: true,
+	  	children: []
+	  };
+
+	  angular.forEach(parentTopologies, function(parentTopology, key) {
 
 	    function pushData(childrenRoot, containerTopology) {
 
 	      var containerDefinition = containers[containerTopology.containerDefinitionId];
 
 	      var child = {
-	      	name: containerDefinition.name
+	      	name: ellipsis(containerDefinition.name, 20),
+	      	containerId: containerDefinition.id,
+	      	containerType: containerDefinition.type
 	      };
 	      if (containerTopology.contains.length > 0) {
 	      	child.children = [];
 	      }
 	      childrenRoot.push(child);
 
-	      jQuery.each(containerTopology.contains, function(key, containerTopologyId) {
+	      angular.forEach(containerTopology.contains, function(containerTopologyId, key) {
 	        pushData(child.children, allTopologies[containerTopologyId]);
 	      });
 	    }
 
-	    data.name = containers[parentTopology.containerDefinitionId].name;
-	    data.children = [];
-	    jQuery.each(parentTopology.contains, function(key, containerTopologyId) {
-	        pushData(data.children, allTopologies[containerTopologyId]);
+	    var parent = {
+	      	name: ellipsis(containers[parentTopology.containerDefinitionId].name, 20),
+	      	containerId: containers[parentTopology.containerDefinitionId].id,
+	      	containerType: containers[parentTopology.containerDefinitionId].type
+	    };
+	    if (parentTopology.contains.length > 0) {
+	      parent.children = [];
+	    }
+	    this.children.push(parent);
+
+	    angular.forEach(parentTopology.contains, function(containerTopologyId, key) {
+	        pushData(parent.children, allTopologies[containerTopologyId]);
 	    });
 
-	  });
+	  }, data);
 
 	  return data;
 	};
@@ -122,7 +146,6 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 
   $scope.pickRevision = function() {
   	if ($scope.pickedRevisionId) {
-  		console.log($scope.pickedRevisionId);
   		// Find picked revision
 			for (var i = 0; i < $scope.revisions.length; i++) {
 				var revision = $scope.revisions[i];
