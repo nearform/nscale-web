@@ -10,6 +10,7 @@
         restrict: 'EA',
         link: function(scope, element, attr, controller) {
 
+          // TODO refactor into a d3 module - see http://bl.ocks.org/biovisualize/5372077#reusable_chart.js
           function init(root) {
 
             var margin = {
