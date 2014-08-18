@@ -12,16 +12,22 @@
 
   <div class="row-fluid" ng-show="show">
 
-    <div class="col-lg-6">
+    <div class="col-lg-12">
 
       <div class="row revisions">
         <div class="col-lg-12">
-          <h4>Revisions</h4>
+          <!-- <h4>Revisions</h4> -->
+          <br/>
           <ul>
 
-            <li ng-repeat="revision in revisions" class="revision-row {{ revision.selected ? 'selected' : '' }} {{ revision.deployed ? 'deployed' : '' }}">
+            <!-- <li ng-repeat="revision in revisions" class="revision-row {{ revision.selected ? 'selected' : '' }} {{ revision.deployed ? 'deployed' : '' }}"> -->
+            <li ng-repeat="revision in revisions" class="revision-row">
+              <time><span>{{ revision.deployed ? 'deployed ' + moment(revision.date).fromNow() : moment(revision.date).fromNow() }}</span> <span>{{ revision.date | date : 'MMM d, y h:mm:ss a' }}</span></time>
+              <div class="cbp_tmicon {{ revision.deployed ? 'deployed' : '' }}"></div>
               <div class="revision-title">
-                <a ng-click="selectRevision(revision)"><span>{{ revision.id }}: {{ revision.message.split(':')[0] }}</span></a>
+                <span>{{ revision.message.split(':')[0] }}</span>
+                <br/>
+                <span class="small">{{ revision.id }}</span>
               </div>
             </li>
 
