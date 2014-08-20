@@ -22,7 +22,7 @@
 
 
 .d3-tip {
-	text-align: center;
+  text-align: center;
   line-height: 1;
   font-weight: bold;
   padding: 12px;
@@ -52,5 +52,5 @@
 }
 
 .d3-tip small {
-	font-size: 70%;
+  font-size: 70%;
 }
