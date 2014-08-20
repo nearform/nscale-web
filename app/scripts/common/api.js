@@ -3,7 +3,7 @@
 
 (function(){
 
-  var apibase = nfd.context.apibase;
+  var apibase = nfd.context.apiserver + nfd.context.apibase;
 
 	var api_module = angular.module('apiService', []);
 

@@ -10,6 +10,22 @@
     <div ng-include="'partials/system/actionbar'"></div>
   </div>
 
+  <div class="row container-build" ng-show="show_build" scroll-glue>
+    <div class="col-lg-12">
+      <h4 class="title">Output:</h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%;">
+          {{ progress }}%
+        </div>
+      </div>
+      <ul>
+        <li ng-repeat="output in buildOutput">
+          <span class="{{ output.type }}">{{ output.text }}</span> <i ng-show="show_spinner" class="fa fa-spinner fa-spin"></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <div class="row-fluid" ng-show="show">
 
     <div class="col-lg-12">
@@ -26,8 +42,9 @@
               <div class="cbp_tmicon {{ revision.deployed ? 'deployed' : '' }}"></div>
               <div class="revision-title">
                 <span>{{ revision.message.split(':')[0] }}</span>
-                <br/>
-                <span class="small">{{ revision.id }}</span>
+                <br/><span class="small">{{ revision.id }}</span>
+                <!-- TODO deploy not working, need to fix nfd-api deploy integration -->
+                <!-- <br/><span class="small"><a ng-show="true" ng-click="deploy(systemId, revision.id)"></span>deploy</a></span> -->
               </div>
             </li>
 
