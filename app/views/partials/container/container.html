@@ -22,14 +22,18 @@
 
       <hr class="slim">
 
-      <div class="row container-build" ng-show="show_build" scroll-glue>
+      <!-- <div class="row container-build-v2" ng-show="show_build" scroll-glue> -->
+      <div class="row container-build-v2" ng-show="show_build">
         <div class="col-lg-12">
+          <img ng-src="{{progress}}"/>
+          <!--
           <h4 class="title">Output:</h4>
           <ul>
             <li ng-repeat="output in buildOutput">
               <span class="{{ output.type }}">{{ output.text }}</span>
             </li>
           </ul>
+          -->
         </div>
       </div>
 

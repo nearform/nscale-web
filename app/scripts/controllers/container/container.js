@@ -30,6 +30,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
   // scope build variables
   $scope.show_build = false;
   $scope.buildOutput = [];
+  $scope.progress = 'http://progressed.io/bar/0?title=Progress';
 
   var initSocketDone = false;
   var initSocket = function() {
@@ -42,6 +43,9 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
         console.log(outJson);
         if (outJson.level !== 'debug') {
             $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+        }
+        if (outJson.level === 'progress') {
+          $scope.progress = 'http://progressed.io/bar/' + Math.round(Math.min(outJson.stdout, 100)) + '?title=Progress';
         }
     });
     socket.on('stderr', function (out) {

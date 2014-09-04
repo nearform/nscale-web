@@ -816,6 +816,10 @@ form.form-search:before {
   overflow-y: scroll;
 }
 
+.container-build-v2 {
+  margin: 10px 0;
+}
+
 .container-build span.debug {
 
 }
