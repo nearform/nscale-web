@@ -1,58 +1,31 @@
 
-NFD Web app
-===========
+# nscale-web
 
-Nearform deployer web app
+The Web GUI of [nscale](http://github.com/nearform/nscale).
 
-## Setup
+Install
+------
 
-```bash
+```sh
+git clone git@github.com:nearform/nscale-api.git
+cd nscale-web
 npm install
-```
-
-### Bower
-
-```bash
 npm install -g bower
 bower install
 ```
 
-### Mongo
+Usage
+-----
 
-On OSX:
-```bash
-brew install mongodb
-mongod --config /usr/local/etc/mongod.conf
-```
-
-To install Mongo on other environment see [http://docs.mongodb.org/manual/installation/](http://docs.mongodb.org/manual/installation/).
-
-## Run
-
-```bash
-node server.js
+```sh
+node server
 ```
 
 And open [localhost:9000](http://localhost:9000)
 
-### Admin
+License
+-------
 
-Open [localhost:9000](http://localhost:9000), login with an admin user (admin credentials defined in lib/config/env/all.js) and go to [localhost:9000/admin](http://localhost:9000/admin).
-
-## Gulp
-
-```bash
-npm i -g gulp
-```
-
-### Running app and watch for changes
-
-```bash
-gulp serve
-```
-
-## Testing
-
-TODO
+Artistic License 2.0
 
 
