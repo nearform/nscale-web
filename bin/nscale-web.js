@@ -32,6 +32,7 @@ if (!config || !config.web) {
 	return;
 }
 
+config.web.root = path.normalize(__dirname + '/..');
 config.web.env = process.env.NODE_ENV;
 
 require('../lib/main')(config.web);
