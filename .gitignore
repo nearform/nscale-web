@@ -4,6 +4,6 @@ public
 .sass-cache
 heroku
 /views
-dist
+./dist
 db
 lib/config/env/chico.js
