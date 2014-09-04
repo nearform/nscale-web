@@ -7,7 +7,9 @@
     'aws-ami': 'AMI',
     'aws-elb': 'Load balancer',
     'aws-sg': 'Security group',
-    'docker': 'Docker container'
+    'docker': 'Docker container',
+    'virtualbox': 'Virtualbox Machine',
+    'boot2docker': 'Boot2Docker container'
   };
 
 	var constants_module = angular.module('constants', []);
