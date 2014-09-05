@@ -85,6 +85,10 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/system/revisions',
         controller: 'RevisionsCtrl'
       })
+      .when('/system/:systemId/revision/:revisionId', {
+        templateUrl: 'partials/revision/revision',
+        controller: 'RevisionCtrl'
+      })
       .when('/system/:systemId/currentstate', {
         templateUrl: 'partials/system/currentstate',
         controller: 'CurrentStateCtrl'

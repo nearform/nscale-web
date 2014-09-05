@@ -179,7 +179,8 @@ a.action:hover span.fa {
 	color: #333333;
 }
 .revisions ul li .revision-title a {
-	color: #333333;
+	/*color: #333333;*/
+	color: #4183c4;
 }
 .revisions ul li span.glyphicon {
 	color: #333333;

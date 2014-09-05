@@ -17,12 +17,11 @@
 angular.module('nfdWebApp').controller('RevisionsCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, socket) {
 
   var loadRevisions = function(systemId) {
-    api.get('/system/' + systemId + '/revisions', $scope.user, function(revisions) {
-      $scope.revisions = revisions;
+    api.get('/system/' + systemId, $scope.user, function(system){
+      $scope.systemName = system.name;
 
-      // Hack to get system name
-      api.get('/system/' + systemId + '/revision/' + revisions[0].id, $scope.user, function(revision) {
-        $scope.systemName = revision.name;
+      api.get('/system/' + systemId + '/revisions', $scope.user, function(revisions) {
+        $scope.revisions = revisions;
         $scope.show = true;
       });
 

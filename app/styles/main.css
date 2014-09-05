@@ -16,6 +16,17 @@ body {
   height: 100%;
 }
 
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+::-webkit-scrollbar-thumb {
+  height: 10px;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 li {
   list-style: none;
 }
@@ -613,7 +624,8 @@ form.form-search:before {
 
 .revisions ul li time span:first-child {
   font-size: 16px;
-  color: #3594cb;
+  /*color: #3594cb;*/
+  color: #333333;
 }
 
 .revisions ul li time span:last-child {
@@ -809,11 +821,22 @@ form.form-search:before {
 }
 
 .container-build {
-  border: 1px solid #c3c3c3;
+  border-top: 1px solid #eeeeee;
   margin: 10px 0;
   padding: 10px 0 0 0;
-  max-height: 200px;
+  /*max-height: 200px;
+  overflow-y: scroll;*/
+}
+
+.container-build ul {
   overflow-y: scroll;
+  max-height: 200px;
+  padding-left: 5px;
+  margin-right: 5px;
+}
+
+.container-build span {
+  font-size: 18px;
 }
 
 .container-build span.debug {
@@ -825,11 +848,11 @@ form.form-search:before {
 }
 
 .container-build span.warn {
-  color: #f0ad4e;
+  /*color: #f0ad4e;*/
 }
 
 .container-build span.error {
-  color: #d9534f;
+  /*color: #d9534f;*/
 }
 
 .container-build ul li i.fa-spinner {
@@ -837,6 +860,15 @@ form.form-search:before {
 }
 .container-build ul li:first-child i.fa-spinner {
   display: inline-block;
+}
+
+.container-build .progress {
+  font-size: 18px;
+  height: 30px;
+}
+
+.container-build .progress-bar {
+  line-height: 30px;
 }
 
 /* Set the fixed height of the footer here */

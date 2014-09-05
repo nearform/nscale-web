@@ -44,8 +44,18 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
   // scope build variables
   $scope.show_build = false;
   $scope.buildOutput = [];
+  $scope.progress = 0;
 
   var initSocketDone = false;
+
+  var scrollBuildOutputDown = function() {
+    // wait 500ms before scrolling down
+    setTimeout(function(){
+      var elem = document.getElementById('container-build-output');
+      elem.scrollTop = elem.scrollHeight;
+    }, 500);
+  };
+
   var initSocket = function() {
     if (initSocketDone) {return;}
     initSocketDone = true;
@@ -54,20 +64,29 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
     socket.on('stdout', function (out) {
         var outJson = JSON.parse(out);
         console.log(outJson);
-        if (outJson.level !== 'debug') {
-            $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+
+        if (outJson.level !== 'debug' && outJson.level !== 'progress') {
+          console.log(outJson);
+          $scope.buildOutput.push({text:outJson.stdout, type:outJson.level});
+          scrollBuildOutputDown();
         }
+        else if (outJson.level === 'progress') {
+          $scope.progress = Math.ceil(Math.min(outJson.stdout, 100));
+        }
+
     });
     socket.on('stderr', function (out) {
         var outJson = JSON.parse(out);
         console.log(outJson);
         $scope.buildOutput.push({text:outJson.stderr, type:'error'});
+        scrollBuildOutputDown();
     });
     socket.on('result', function (out) {
         console.log(out);
         $scope.buildOutput.push({text:out, type:'result'});
+        scrollBuildOutputDown();
     });
-  }
+  };
 
   var setRepositoryToken = function() {
     // TODO Get repository token if user does not have the credentials
@@ -96,6 +115,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
   }
 
   // Deploy trigger
+  /*
   $scope.deploy = function(){
       console.log('Deploying container');
 
@@ -108,6 +128,7 @@ angular.module('nfdWebApp').controller('ContainerCtrl', function ($scope, $http,
           console.dir(data);
       });
   }
+  */
 
   $scope.resolveType = function(type){return containerTypes[type];}
 

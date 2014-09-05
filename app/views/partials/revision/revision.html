@@ -1,0 +1,91 @@
+
+<div ng-include="'partials/navbar'"></div>
+
+<div class="container">
+
+  <div class="navbar searchbar">
+    <div class="navbar-header">
+      <h4 class="title"><a href="/home">Systems</a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="/system/{{ systemId }}">{{ systemName }}</a> <span class="glyphicon glyphicon-chevron-right"></span> <a href="/system/{{ systemId }}/revisions">revisions</a> <span class="glyphicon glyphicon-chevron-right"></span> {{ revision.id }}</h4>
+    </div>
+  </div>
+
+  <div class="row" id="container" ng-show="show">
+    <div class="col-lg-12">
+
+      <div class="row">
+        <div class="col-lg-12">
+          <a class="action pull-right" ng-click="deploy()"><span class="glyphicon glyphicon-flash"></span> Deploy</a>
+          <a class="action pull-right" ng-click="preview()"><span class="glyphicon glyphicon-eye-open"></span> Preview</a>
+        </div>
+      </div>
+
+      <hr class="slim">
+
+      <div class="row container-build" ng-show="show_preview">
+        <div class="col-lg-12">
+          <ul id="container-build-output">
+            <li>
+              <span>Execution plan:</span>
+            </li>
+            <li ng-repeat="output in previewOutput.plan">
+              <span>{{ output.cmd }} {{ output.id }}</span>
+            </li>
+            <li>
+              <span>&nbsp;</span>
+            </li>
+            <li>
+              <span>Opeations:</span>
+            </li>
+            <li ng-repeat="output in previewOutput.ops">
+              <span>{{ output.host }}: {{ output.cmd }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row container-build" ng-show="show_build">
+        <div class="col-lg-12">
+          <div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="{{ progress }}" aria-valuemin="0" aria-valuemax="100" style="width: {{ progress }}%;">
+              <span ng-show="progress != 100">Deploying - {{ progress }}%</span>
+              <span ng-show="progress == 100">Done</span>
+            </div>
+          </div>
+          <ul id="container-build-output">
+            <li ng-repeat="output in buildOutput">
+              <span class="{{ output.type }}">{{ output.text }}</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row container-details">
+        <div class="col-lg-12">
+
+          <table class="table">
+
+            <tr>
+              <td>id</td>
+              <td>{{ revision.id }}</td>
+            </tr>
+
+            <tr>
+              <td>message</td>
+              <td>{{ revision.message.split(':')[0] }}</td>
+            </tr>
+
+            <tr>
+              <td>date</td>
+              <td>{{ revision.date | date : 'MMM d, y h:mm:ss a' }}</td>
+            </tr>
+
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div> <!-- /container -->

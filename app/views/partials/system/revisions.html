@@ -42,7 +42,7 @@
               <div class="cbp_tmicon {{ revision.deployed ? 'deployed' : '' }}"></div>
               <div class="revision-title">
                 <span>{{ revision.message.split(':')[0] }}</span>
-                <br/><span class="small">{{ revision.id }}</span>
+                <br/><a href="/system/{{ systemId }}/revision/{{ revision.id }}"><span class="small">{{ revision.id }}</span></a>
                 <!-- TODO deploy not working, need to fix nfd-api deploy integration -->
                 <!-- <br/><span class="small"><a ng-show="true" ng-click="deploy(systemId, revision.id)"></span>deploy</a></span> -->
               </div>
