@@ -69,6 +69,10 @@ angular.module('nfdWebApp', [
         templateUrl: 'partials/system/add',
         controller: 'HomeCtrl'
       })
+      .when('/system/clone', {
+        templateUrl: 'partials/system/clone',
+        controller: 'HomeCtrl'
+      })
       .when('/system/:systemId/edit', {
         templateUrl: 'partials/system/edit',
         controller: 'SystemCtrl'

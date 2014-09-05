@@ -41,6 +41,22 @@ angular.module('nfdWebApp').controller('HomeCtrl', function ($scope, $http, $loc
     });
   }
 
+  // System clone
+  $scope.clone = function() {
+    $scope.cloneClicked = true;
+    if ($scope.form.$invalid) {
+      return;
+    }
+
+    // Remove any leading or traling whitespace
+    $scope.url = $scope.url.trim();
+
+    api.post('/system/clone', {url:$scope.url}, $scope.user, function(system){
+      $scope.msg = 'System cloned';
+      $location.path('/home');
+    });
+  }
+
 	// System delete
   $scope.delete = function(system){
     var r = confirm("Are you sure?");
