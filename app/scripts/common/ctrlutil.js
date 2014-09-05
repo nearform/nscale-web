@@ -22,10 +22,7 @@
   var moment = function(dateISOString) {
     return {
       fromNow: function() {
-
-        // From http://stackoverflow.com/questions/15517024/convert-iso-date-string-in-javascript-to-date-object-without-converting-to-loca
         var date = new Date(dateISOString);
-        date =   new Date( date.getTime() + ( date.getTimezoneOffset() * 60000 ) );
 
         var seconds = Math.floor((new Date() - date) / 1000);
 
