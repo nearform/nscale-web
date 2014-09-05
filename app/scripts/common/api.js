@@ -37,6 +37,25 @@
         window.location.href=apibase+'/auth/github';
       },
 
+      anonymousLogin: function(cb) {
+        if (apiLoggedInUser) {return cb(apiLoggedInUser);}
+
+        this.call('POST','/auth/login/anonymous',null,{},
+          function(out){
+            console.log(out);
+            if (out.user) {
+              apiLoggedInUser = out.user;
+              cb(apiLoggedInUser);
+            }
+            else {
+              window.location.href='/error';
+            }
+          }
+          ,function(out) {
+            window.location.href='/error';
+          });
+      },
+
       checkLoggedIn: function(cb) {
         if (apiLoggedInUser) {return cb(apiLoggedInUser);}
 
@@ -54,6 +73,7 @@
             window.location.href='/';
           });
       },
+
       logout: function(){
         this.call('POST','/auth/logout',null,{},
           function(out){

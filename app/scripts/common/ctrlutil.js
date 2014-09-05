@@ -68,7 +68,9 @@
           api.logout();
         }
 
-        api.checkLoggedIn(function(user) {
+        /* TODO anonymous login active, switch to checkLoggedIn when authenticated login is re-enabled */
+        // api.checkLoggedIn(function(user) {
+        api.anonymousLogin(function(user) {
           $scope.user = user;
           cb(user);
         });

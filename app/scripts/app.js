@@ -34,8 +34,12 @@ angular.module('nfdWebApp', [
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {
+        /* TODO anonymous login active, switch to checkLoggedIn when authenticated login is re-enabled */
+        /*
         templateUrl: 'partials/main',
         controller: 'MainCtrl'
+        */
+        redirectTo: '/home'
       })
       .when('/home', {
         templateUrl: 'partials/home',
@@ -104,6 +108,9 @@ angular.module('nfdWebApp', [
       .when('/system/:systemId', {
         templateUrl: 'partials/system/containers',
         controller: 'ContainersCtrl'
+      })
+      .when('/error', {
+        templateUrl: 'partials/error'
       })
       .otherwise({
         redirectTo: '/'
