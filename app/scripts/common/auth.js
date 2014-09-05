@@ -75,18 +75,21 @@
 
       // TODO Hack - using json rest API to get other user's avatar (should be set by backend!)
       avatar: function(id, win,fail){
-        $http({method:'GET', url: '/api/1.0/sys_user?id=' + id, cache:false}).
-          success(function(user) {
-            var avatar = user.avatar;
-            // Get github avatar if available and there isn't an avatar already set
-            if (!user.avatar && user.service && user.service.github && user.service.github.userdata && user.service.github.userdata._json) {
-              avatar = user.service.github.userdata._json.avatar_url;
-            }
-            if( win ) {return win(avatar);}
-          }).
-          error(function(data) {
-            if( fail ) {return fail(data);}
-          });
+
+        if ( fail ) {return fail("not implemented");}
+
+        // $http({method:'GET', url: '/api/1.0/sys_user?id=' + id, cache:false}).
+        //   success(function(user) {
+        //     var avatar = user.avatar;
+        //     // Get github avatar if available and there isn't an avatar already set
+        //     if (!user.avatar && user.service && user.service.github && user.service.github.userdata && user.service.github.userdata._json) {
+        //       avatar = user.service.github.userdata._json.avatar_url;
+        //     }
+        //     if( win ) {return win(avatar);}
+        //   }).
+        //   error(function(data) {
+        //     if( fail ) {return fail(data);}
+        //   });
       },
 
       reset: function(creds,win,fail){

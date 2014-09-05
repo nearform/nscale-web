@@ -153,7 +153,8 @@ angular.module('nfdWebApp').controller('StateCtrl', function ($scope, $http, $lo
 			// TODO What if no revisions have yet to be deployed? pick latest one?
 			if (!$scope.selectedRevision) {
 				console.log("No revision deployed yet");
-				return;
+				$scope.selectedRevision = revisions[0];
+				$scope.pickedRevisionId = revisions[0].id;
 			}
 
 			selectRevision($scope.selectedRevision.id);

@@ -16,29 +16,23 @@
 
 angular.module('nfdWebApp').controller('RevisionsCtrl', function ($scope, $http, $location, $routeParams, ctrlutil, api, socket) {
 
-  var loadRevisions = function(systemId, callback) {
+  var loadRevisions = function(systemId) {
     api.get('/system/' + systemId + '/revisions', $scope.user, function(revisions) {
       $scope.revisions = revisions;
-      callback(revisions);
-    });
-  };
 
-  var loadSystem = function() {
-    api.get('/system/' + $scope.systemId + '/deployed', $scope.user, function(system){
-      $scope.system = system;
-      $scope.systemName = system.name;
-      $scope.containers = system.containerDefinitions;
-
-      loadRevisions($scope.systemId, function(revisions) {
+      // Hack to get system name
+      api.get('/system/' + systemId + '/revision/' + revisions[0].id, $scope.user, function(revision) {
+        $scope.systemName = revision.name;
         $scope.show = true;
       });
+
     });
   };
 
   // Init
   ctrlutil.init($scope, function(user) {
     $scope.systemId = $routeParams.systemId;
-    loadSystem();
+    loadRevisions($scope.systemId);
   });
 
   // scope build variables
