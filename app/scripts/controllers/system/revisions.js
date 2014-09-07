@@ -34,6 +34,8 @@ angular.module('nfdWebApp').controller('RevisionsCtrl', function ($scope, $http,
     loadRevisions($scope.systemId);
   });
 
+  /* TODO Remove old code
+
   // scope build variables
   $scope.show_build = false;
   $scope.show_spinner = false;
@@ -83,5 +85,6 @@ angular.module('nfdWebApp').controller('RevisionsCtrl', function ($scope, $http,
       console.log(data);
     });
   }
+  */
 
 });
