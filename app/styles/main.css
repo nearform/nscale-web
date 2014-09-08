@@ -397,7 +397,14 @@ form.form-search:before {
   position: relative;
   display: block;
   padding: 20px 15px;
-  width: 700px;
+  width: 900px;
+}
+
+.list ul li > div > article > p {
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .list ul li .title {
