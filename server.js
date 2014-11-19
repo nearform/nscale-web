@@ -14,8 +14,18 @@
 
 'use strict';
 
+var path = require('path');
+var opts = require('yargs')
+            .usage('Usage: $0 --config="config file"')
+            .alias('c', 'config')
+            .demand(['c'])
+            .argv;
+
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var config = require('./lib/config/config');
-
+var config = require(path.resolve(opts.config));
+if (config.web) {
+  config = config.web;
+}
 require('./lib/main')(config);
+
